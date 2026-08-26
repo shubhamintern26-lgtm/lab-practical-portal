@@ -43,3 +43,17 @@ def practical_detail(request, practical_id):
             "practical": practical,
         }
     )
+    
+def subject_qr(request, subject_id):
+    subject = get_object_or_404(
+        Subject,
+        id=subject_id
+    )
+
+    return render(
+        request,
+        "practicals/subject_qr.html",
+        {
+            "subject": subject,
+        }
+    )

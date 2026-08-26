@@ -16,5 +16,11 @@ urlpatterns = [
         views.practical_detail,
         name="practical_detail"
     ),
+     
+     path(
+    "subject/<int:subject_id>/qr/",
+    views.subject_qr,
+    name="subject_qr"
+),
 
 ]

@@ -134,3 +134,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+SITE_URL = "http://127.0.0.1:8000"
