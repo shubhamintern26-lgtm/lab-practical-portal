@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ subject.name }} | Lab Practical Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #374151;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            color: #2563eb;
+        }
+
+
+        /* HEADER */
+
+        .subject-header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 65px 7%;
+        }
+
+        .subject-header .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .subject-header h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .subject-header p {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+
+        /* PRACTICAL SECTION */
+
+        .practical-section {
+            padding: 70px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 32px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #6b7280;
+        }
+
+
+        /* PRACTICAL CARD */
+
+        .practical-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .practical-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+        }
+
+        .practical-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.10);
+        }
+
+        .practical-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 45px;
+            height: 45px;
+
+            background: #dbeafe;
+            color: #2563eb;
+
+            border-radius: 12px;
+
+            font-weight: 700;
+            font-size: 16px;
+
+            margin-bottom: 18px;
+        }
+
+        .practical-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #111827;
+        }
+
+        .practical-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            text-decoration: none;
+
+            background: #2563eb;
+            color: white;
+
+            padding: 10px 17px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .view-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* EMPTY */
+
+        .empty-box {
+            background: white;
+            text-align: center;
+            padding: 60px 30px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .empty-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .empty-box p {
+            color: #6b7280;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+
+            .practical-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .subject-header {
+                padding: 50px 5%;
+            }
+
+            .subject-header h1 {
+                font-size: 32px;
+            }
+
+            .practical-section {
+                padding: 50px 5%;
+            }
+
+            .practical-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            🧪 Lab Practical Portal
+        </a>
+
+        <a href="/" class="back-btn">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+
+    <!-- SUBJECT HEADER -->
+
+    <section class="subject-header">
+
+        <span class="badge">
+            Laboratory Subject
+        </span>
+
+        <h1>
+            {{ subject.name }}
+        </h1>
+
+        <p>
+            Subject Code: <strong>{{ subject.code }}</strong>
+        </p>
+
+    </section>
+
+
+    <!-- PRACTICALS -->
+
+    <section class="practical-section">
+
+        <div class="section-heading">
+
+            <h2>
+                Laboratory Practicals
+            </h2>
+
+            <p>
+                Select a practical to view complete details.
+            </p>
+
+        </div>
+
+
+        <div class="practical-grid">
+
+            {% for practical in practicals %}
+
+            <div class="practical-card">
+
+                <div class="practical-number">
+                    {{ practical.practical_number }}
+                </div>
+
+                <h3>
+                    {{ practical.title }}
+                </h3>
+
+                <p>
+                    {{ practical.aim|truncatewords:18 }}
+                </p>
+
+                <a href="{% url 'practical_detail' practical.id %}" class="view-btn">
+                    View Practical →
+                </a>
+
+            </div>
+
+
+            {% empty %}
+
+            <div class="empty-box">
+
+                <h3>
+                    No Practicals Available
+                </h3>
+
+                <p>
+                    Practicals will appear here once
+                    they are added by the administrator.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Lab Practical Portal | Built with Django
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
