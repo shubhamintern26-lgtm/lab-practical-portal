@@ -4,10 +4,6 @@ from django.utils.html import format_html
 from .models import Subject, Practical
 
 
-# =========================================================
-# SUBJECT ADMIN
-# =========================================================
-
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
 
@@ -15,6 +11,7 @@ class SubjectAdmin(admin.ModelAdmin):
         "name",
         "code",
         "qr_preview",
+        "print_qr",
         "created_at",
     )
 
@@ -27,33 +24,35 @@ class SubjectAdmin(admin.ModelAdmin):
         "qr_preview",
     )
 
-    list_per_page = 20
+    def qr_preview(self, obj=None):
 
-    def qr_preview(self, obj):
-
-        if obj.qr_code:
+        if obj and obj.qr_code:
             return format_html(
-                '<img src="{}" '
-                'width="180" '
-                'height="180" '
-                'style="object-fit:contain; '
-                'border:1px solid #ddd; '
-                'border-radius:8px; '
-                'padding:5px; '
-                'background:white;" />',
-                obj.qr_code.url
+                '<img src="{}" width="120" height="120" '
+                'style="object-fit:contain;" />',
+                obj.qr_code.url,
             )
 
-        return format_html(
-            '<span style="color:#999;">QR not generated</span>'
-        )
+        return "QR not generated"
 
-    qr_preview.short_description = "QR Code"
+    def print_qr(self, obj):
+        if obj and obj.pk:
+            url = f"/subject/{obj.pk}/qr-print/"
 
+            return format_html(
+                '<a href="{}" target="_blank" '
+                'style="background:#2563eb;color:white;'
+                'padding:6px 12px;border-radius:6px;'
+                'text-decoration:none;font-weight:600;">'
+                '🖨 Print QR'
+                '</a>',
+                url,
+            )
 
-# =========================================================
-# PRACTICAL ADMIN
-# =========================================================
+        return "-"
+
+    print_qr.short_description = "Print QR"
+
 
 @admin.register(Practical)
 class PracticalAdmin(admin.ModelAdmin):
@@ -72,12 +71,9 @@ class PracticalAdmin(admin.ModelAdmin):
     search_fields = (
         "title",
         "subject__name",
-        "subject__code",
     )
 
     ordering = (
         "subject",
         "practical_number",
     )
-
-    list_per_page = 20

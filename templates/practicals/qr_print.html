@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Print QR - {{ subject.name }}</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            padding: 25mm;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .college {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .portal {
+            font-size: 16px;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 35px;
+        }
+
+        .line {
+            width: 80px;
+            height: 4px;
+            background: #2563eb;
+            margin: 0 auto 35px;
+            border-radius: 10px;
+        }
+
+        .scan-title {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .subject {
+            font-size: 25px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .code {
+            font-size: 17px;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .qr-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            border: 3px solid #2563eb;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .qr-box img {
+            width: 240px;
+            height: 240px;
+            object-fit: contain;
+        }
+
+        .instruction {
+            font-size: 19px;
+            font-weight: 600;
+            margin: 10px auto;
+            max-width: 500px;
+        }
+
+        .small {
+            color: #64748b;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 55px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .print-button:hover {
+            background: #1d4ed8;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 210mm;
+                min-height: 297mm;
+            }
+
+            .print-button {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .page {
+                width: 100%;
+                min-height: 100vh;
+                margin: 0;
+                padding: 30px 20px;
+            }
+
+            .college {
+                font-size: 20px;
+            }
+
+            .scan-title {
+                font-size: 25px;
+            }
+
+            .subject {
+                font-size: 21px;
+            }
+
+            .qr-box img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="print-button" onclick="window.print()">
+        🖨 Print QR
+    </button>
+
+    <div class="page">
+
+        <div class="college">
+            NRI Group of Institute
+        </div>
+
+        <div class="portal">
+            LAB PRACTICAL PORTAL
+        </div>
+
+        <div class="line"></div>
+
+        <div class="scan-title">
+            SCAN TO ACCESS PRACTICALS
+        </div>
+
+        <div class="subject">
+            {{ subject.name }}
+        </div>
+
+        <div class="code">
+            Subject Code: {{ subject.code }}
+        </div>
+
+        <div class="qr-box">
+            {% if subject.qr_code %}
+                <img src="{{ subject.qr_code.url }}" alt="QR Code">
+            {% else %}
+                <p>QR Code not available</p>
+            {% endif %}
+        </div>
+
+        <div class="instruction">
+            📱 Scan this QR Code using your mobile phone
+        </div>
+
+        <div class="small">
+            Access all practicals, procedures, programs and viva questions.
+        </div>
+
+        <div class="footer">
+            Lab Practical Portal • QR Based Practical Access System
+        </div>
+
+    </div>
+
+</body>
+</html>

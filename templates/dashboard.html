@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Lab Practical Portal</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #1f2937;
+        line-height: 1.5;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+        height: 72px;
+        background: rgba(255, 255, 255, 0.96);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 7%;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        backdrop-filter: blur(10px);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        color: #1d4ed8;
+
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #eff6ff;
+
+        border-radius: 12px;
+
+        font-size: 21px;
+    }
+
+    .home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+
+        padding: 10px 16px;
+
+        text-decoration: none;
+
+        color: #374151;
+
+        background: #f9fafb;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        transition: 0.25s;
+    }
+
+    .home-btn:hover {
+        color: #2563eb;
+        border-color: #bfdbfe;
+        background: #eff6ff;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .dashboard-header {
+        position: relative;
+        overflow: hidden;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #1e40af
+            );
+
+        color: white;
+
+        padding: 58px 7%;
+    }
+
+    .dashboard-header::before {
+        content: "";
+
+        position: absolute;
+
+        width: 250px;
+        height: 250px;
+
+        border-radius: 50%;
+
+        background: rgba(255,255,255,0.08);
+
+        right: 8%;
+        top: -100px;
+    }
+
+    .dashboard-header::after {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+        height: 180px;
+
+        border-radius: 50%;
+
+        background: rgba(255,255,255,0.06);
+
+        right: 25%;
+        bottom: -100px;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .header-badge {
+        display: inline-block;
+
+        padding: 7px 12px;
+
+        margin-bottom: 15px;
+
+        border: 1px solid rgba(255,255,255,0.25);
+
+        background: rgba(255,255,255,0.10);
+
+        border-radius: 20px;
+
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .dashboard-header h1 {
+        font-size: 40px;
+
+        margin-bottom: 9px;
+
+        letter-spacing: -0.5px;
+    }
+
+    .dashboard-header p {
+        font-size: 16px;
+
+        color: rgba(255,255,255,0.88);
+
+        max-width: 650px;
+    }
+
+
+    /* =========================
+       CONTAINER
+    ========================= */
+
+    .container {
+        width: 86%;
+        max-width: 1200px;
+
+        margin: 45px auto;
+    }
+
+
+    /* =========================
+       SECTION TITLE
+    ========================= */
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+        font-size: 25px;
+
+        color: #111827;
+    }
+
+    .section-subtitle {
+        color: #6b7280;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 22px;
+
+        margin-bottom: 45px;
+    }
+
+    .stat-card {
+        position: relative;
+
+        background: white;
+
+        padding: 26px;
+
+        border-radius: 18px;
+
+        border: 1px solid #e5e7eb;
+
+        box-shadow:
+            0 7px 25px rgba(0,0,0,0.05);
+
+        overflow: hidden;
+
+        transition: 0.3s;
+    }
+
+    .stat-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 90px;
+        height: 90px;
+
+        border-radius: 50%;
+
+        background: #eff6ff;
+
+        right: -35px;
+        top: -35px;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 15px 35px rgba(0,0,0,0.09);
+    }
+
+    .stat-icon {
+        position: relative;
+        z-index: 2;
+
+        width: 50px;
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #eff6ff;
+
+        border-radius: 14px;
+
+        font-size: 25px;
+
+        margin-bottom: 17px;
+    }
+
+    .stat-card h2 {
+        position: relative;
+        z-index: 2;
+
+        font-size: 34px;
+
+        color: #111827;
+
+        margin-bottom: 3px;
+    }
+
+    .stat-card p {
+        position: relative;
+        z-index: 2;
+
+        color: #6b7280;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       QUICK ACTIONS
+    ========================= */
+
+    .actions-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 20px;
+
+        margin-bottom: 48px;
+    }
+
+    .action-card {
+        background: white;
+
+        padding: 25px;
+
+        border-radius: 17px;
+
+        border: 1px solid #e5e7eb;
+
+        text-decoration: none;
+
+        color: #111827;
+
+        transition: 0.3s;
+    }
+
+    .action-card:hover {
+        transform: translateY(-5px);
+
+        border-color: #bfdbfe;
+
+        box-shadow:
+            0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .action-icon {
+        width: 52px;
+        height: 52px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #eff6ff;
+
+        border-radius: 14px;
+
+        font-size: 25px;
+
+        margin-bottom: 17px;
+    }
+
+    .action-card h3 {
+        font-size: 18px;
+
+        margin-bottom: 7px;
+    }
+
+    .action-card p {
+        color: #6b7280;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================
+       RECENT DATA
+    ========================= */
+
+    .recent-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 22px;
+    }
+
+    .recent-card {
+        background: white;
+
+        border-radius: 18px;
+
+        border: 1px solid #e5e7eb;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 7px 25px rgba(0,0,0,0.05);
+    }
+
+    .recent-header {
+        padding: 19px 22px;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .recent-header h3 {
+        font-size: 17px;
+    }
+
+    .view-all {
+        text-decoration: none;
+
+        color: #2563eb;
+
+        font-size: 13px;
+
+        font-weight: 700;
+    }
+
+    .view-all:hover {
+        text-decoration: underline;
+    }
+
+    .recent-list {
+        padding: 4px 0;
+    }
+
+    .recent-item {
+        padding: 16px 22px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 15px;
+
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .recent-item:last-child {
+        border-bottom: none;
+    }
+
+    .item-info {
+        min-width: 0;
+    }
+
+    .item-info h4 {
+        font-size: 14px;
+
+        margin-bottom: 4px;
+
+        color: #111827;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+    .item-info p {
+        font-size: 12px;
+
+        color: #6b7280;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+    .code-badge,
+    .practical-badge {
+        flex-shrink: 0;
+
+        padding: 5px 9px;
+
+        border-radius: 7px;
+
+        font-size: 10px;
+
+        font-weight: 800;
+    }
+
+    .code-badge {
+        background: #dbeafe;
+        color: #2563eb;
+    }
+
+    .practical-badge {
+        background: #f3e8ff;
+        color: #7e22ce;
+    }
+
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    .empty {
+        padding: 30px 20px;
+
+        text-align: center;
+
+        color: #6b7280;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+        background: #111827;
+
+        color: white;
+
+        text-align: center;
+
+        padding: 27px 20px;
+
+        margin-top: 65px;
+    }
+
+    footer p {
+        color: #9ca3af;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 950px) {
+
+        .stats-grid,
+        .actions-grid {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+        .recent-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+        .navbar {
+            height: 65px;
+
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-size: 16px;
+        }
+
+        .logo-icon {
+            width: 35px;
+            height: 35px;
+
+            font-size: 18px;
+        }
+
+        .home-btn {
+            padding: 8px 11px;
+
+            font-size: 12px;
+        }
+
+        .dashboard-header {
+            padding: 43px 5%;
+        }
+
+        .dashboard-header h1 {
+            font-size: 30px;
+        }
+
+        .dashboard-header p {
+            font-size: 14px;
+        }
+
+        .container {
+            width: 90%;
+
+            margin: 35px auto;
+        }
+
+        .stats-grid,
+        .actions-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .section-title h2 {
+            font-size: 21px;
+        }
+
+        .recent-header {
+            padding: 17px;
+        }
+
+        .recent-item {
+            padding: 15px 17px;
+        }
+
+        .item-info h4 {
+            max-width: 170px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🧪
+        </div>
+
+        Lab Practical Portal
+
+    </div>
+
+    <a href="/" class="home-btn">
+        ← Home
+    </a>
+
+</nav>
+
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<section class="dashboard-header">
+
+    <div class="header-content">
+
+        <span class="header-badge">
+            ⚙️ ADMIN CONTROL PANEL
+        </span>
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Manage laboratory subjects, practicals and
+            QR codes from one professional dashboard.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main class="container">
+
+
+    <!-- =========================
+         STATISTICS
+    ========================== -->
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <h2>
+                {{ total_subjects }}
+            </h2>
+
+            <p>
+                Total Subjects
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🧪
+            </div>
+
+            <h2>
+                {{ total_practicals }}
+            </h2>
+
+            <p>
+                Total Practicals
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📱
+            </div>
+
+            <h2>
+                {{ total_qr_codes }}
+            </h2>
+
+            <p>
+                QR Codes Generated
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         QUICK ACTIONS
+    ========================== -->
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                Quick Actions
+            </h2>
+
+            <p class="section-subtitle">
+                Manage your laboratory content quickly
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="actions-grid">
+
+
+        <a
+            href="{% url 'admin:practicals_subject_add' %}"
+            class="action-card"
+        >
+
+            <div class="action-icon">
+                ➕
+            </div>
+
+            <h3>
+                Add Subject
+            </h3>
+
+            <p>
+                Create a new laboratory subject
+                and automatically generate its QR code.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="{% url 'admin:practicals_practical_add' %}"
+            class="action-card"
+        >
+
+            <div class="action-icon">
+                🧪
+            </div>
+
+            <h3>
+                Add Practical
+            </h3>
+
+            <p>
+                Add aim, theory, procedure, code,
+                output and viva questions.
+            </p>
+
+        </a>
+
+
+
+        <a
+            href="{% url 'admin:practicals_subject_changelist' %}"
+            class="action-card"
+        >
+
+            <div class="action-icon">
+                📱
+            </div>
+
+            <h3>
+                Manage Subjects & QR
+            </h3>
+
+            <p>
+                View subjects, manage QR codes
+                and update subject information.
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         RECENT ACTIVITY
+    ========================== -->
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                Recent Activity
+            </h2>
+
+            <p class="section-subtitle">
+                Recently added subjects and practicals
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="recent-grid">
+
+
+        <!-- RECENT SUBJECTS -->
+
+        <div class="recent-card">
+
+            <div class="recent-header">
+
+                <h3>
+                    📚 Recent Subjects
+                </h3>
+
+                <a
+                    href="{% url 'admin:practicals_subject_changelist' %}"
+                    class="view-all"
+                >
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="recent-list">
+
+
+                {% for subject in recent_subjects %}
+
+                <div class="recent-item">
+
+                    <div class="item-info">
+
+                        <h4>
+                            {{ subject.name }}
+                        </h4>
+
+                        <p>
+                            Subject added to portal
+                        </p>
+
+                    </div>
+
+
+                    <span class="code-badge">
+
+                        {{ subject.code }}
+
+                    </span>
+
+                </div>
+
+
+                {% empty %}
+
+                <div class="empty">
+
+                    📚 No subjects available yet.
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RECENT PRACTICALS -->
+
+        <div class="recent-card">
+
+            <div class="recent-header">
+
+                <h3>
+                    🧪 Recent Practicals
+                </h3>
+
+                <a
+                    href="{% url 'admin:practicals_practical_changelist' %}"
+                    class="view-all"
+                >
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="recent-list">
+
+
+                {% for practical in recent_practicals %}
+
+                <div class="recent-item">
+
+                    <div class="item-info">
+
+                        <h4>
+                            Practical
+                            {{ practical.practical_number }}
+                        </h4>
+
+                        <p>
+                            {{ practical.title }}
+                        </p>
+
+                    </div>
+
+
+                    <span class="practical-badge">
+
+                        {{ practical.subject.code }}
+
+                    </span>
+
+                </div>
+
+
+                {% empty %}
+
+                <div class="empty">
+
+                    🧪 No practicals available yet.
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+        © 2026 Lab Practical Portal • Built with Django
+    </p>
+
+</footer>
+```
+
+</body>
+
+</html>

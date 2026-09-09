@@ -1,15 +1,23 @@
 from django.db import models
-from django.conf import settings
 from django.urls import reverse
+from django.core.files import File
+from django.conf import settings
+
 import qrcode
 from io import BytesIO
-from django.core.files import File
 
 
 class Subject(models.Model):
     name = models.CharField(max_length=200)
-    code = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)
+
+    code = models.CharField(
+        max_length=50,
+        unique=True
+    )
+
+    description = models.TextField(
+        blank=True
+    )
 
     qr_code = models.ImageField(
         upload_to="qrcodes/",
@@ -17,7 +25,9 @@ class Subject(models.Model):
         null=True
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     class Meta:
         ordering = ["name"]
@@ -28,27 +38,41 @@ class Subject(models.Model):
     def get_absolute_url(self):
         return reverse(
             "subject_detail",
-            kwargs={"subject_id": self.id}
+            args=[self.id]
         )
 
     def save(self, *args, **kwargs):
 
-        # Pehle Subject save karo,
-        # taaki usko ID mil jaye.
+        # First save subject so it gets an ID
         super().save(*args, **kwargs)
 
-        # QR URL
-        qr_url = f"{settings.SITE_URL}{self.get_absolute_url()}"
+        # ==================================================
+        # QR CODE URL
+        # ==================================================
 
-        # QR generate
+        site_url = getattr(
+            settings,
+            "SITE_URL",
+            "http://10.74.246.175:8000"
+        )
+
+        subject_url = (
+            f"{site_url}"
+            f"{self.get_absolute_url()}"
+        )
+
+        # ==================================================
+        # GENERATE QR CODE
+        # ==================================================
+
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_H,
             box_size=10,
-            border=4,
+            border=4
         )
 
-        qr.add_data(qr_url)
+        qr.add_data(subject_url)
         qr.make(fit=True)
 
         qr_image = qr.make_image(
@@ -56,7 +80,10 @@ class Subject(models.Model):
             back_color="white"
         )
 
-        # Image ko memory me save karo
+        # ==================================================
+        # SAVE QR IMAGE
+        # ==================================================
+
         buffer = BytesIO()
 
         qr_image.save(
@@ -64,16 +91,23 @@ class Subject(models.Model):
             format="PNG"
         )
 
-        file_name = f"{self.code}_qr.png"
+        buffer.seek(0)
 
-        # Django ImageField me save
+        filename = f"{self.code}_QR.png"
+
+        # Delete old QR before creating new one
+        if self.qr_code:
+            self.qr_code.delete(
+                save=False
+            )
+
         self.qr_code.save(
-            file_name,
+            filename,
             File(buffer),
             save=False
         )
 
-        # QR ke saath object update
+        # Save QR field only
         super().save(
             update_fields=["qr_code"]
         )
@@ -126,7 +160,6 @@ class Practical(models.Model):
     )
 
     class Meta:
-
         ordering = ["practical_number"]
 
         unique_together = [

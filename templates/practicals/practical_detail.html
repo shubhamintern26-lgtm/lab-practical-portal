@@ -1,487 +1,924 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>
+    Practical {{ practical.practical_number }} | {{ practical.title }}
+</title>
 
-    <title>
-        {{ practical.title }} | Lab Practical Portal
-    </title>
+<style>
 
-    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #1f2937;
-        }
+    body {
+        font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Arial,
+            sans-serif;
 
-        /* NAVBAR */
+        background: #f4f7fb;
+        color: #172033;
+        line-height: 1.6;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    .navbar {
+        height: 72px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 6%;
+
+        border-bottom: 1px solid #e7ebf2;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        text-decoration: none;
+        color: #1d4ed8;
+
+        font-size: 19px;
+        font-weight: 800;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .back-btn {
+        text-decoration: none;
+
+        color: #475569;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        padding: 9px 14px;
+
+        border-radius: 9px;
+
+        transition: 0.2s;
+    }
+
+    .back-btn:hover {
+        background: #eff6ff;
+        color: #2563eb;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(255,255,255,0.16),
+                transparent 35%
+            ),
+            linear-gradient(
+                135deg,
+                #1d4ed8,
+                #2563eb,
+                #3b82f6
+            );
+
+        color: white;
+
+        padding: 70px 6%;
+    }
+
+    .hero-content {
+        max-width: 1120px;
+        margin: auto;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+
+        padding: 8px 14px;
+
+        border-radius: 30px;
+
+        background: rgba(255,255,255,0.16);
+
+        border: 1px solid rgba(255,255,255,0.22);
+
+        font-size: 13px;
+        font-weight: 700;
+
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+        line-height: 1.2;
+
+        max-width: 900px;
+
+        margin-bottom: 18px;
+
+        letter-spacing: -0.7px;
+    }
+
+    .subject-info {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        color: rgba(255,255,255,0.92);
+
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .subject-tag {
+        background: rgba(255,255,255,0.13);
+
+        padding: 7px 12px;
+
+        border-radius: 8px;
+    }
+
+    /* ================= MAIN ================= */
+
+    .container {
+        width: 88%;
+        max-width: 1120px;
+
+        margin: 50px auto;
+    }
+
+    /* ================= SECTION ================= */
+
+    .content-card {
+        background: white;
+
+        border: 1px solid #e6eaf0;
+
+        border-radius: 18px;
+
+        padding: 30px;
+
+        margin-bottom: 24px;
+
+        box-shadow:
+            0 8px 25px rgba(15,23,42,0.05);
+
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .content-card:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 14px 35px rgba(15,23,42,0.08);
+    }
+
+    .section-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        margin-bottom: 20px;
+    }
+
+    .section-icon {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 12px;
+
+        background: #eff6ff;
+
+        font-size: 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 21px;
+        color: #111827;
+    }
+
+    .section-content {
+        color: #475569;
+
+        font-size: 15px;
+
+        line-height: 1.9;
+
+        white-space: pre-line;
+    }
+
+    /* ================= REQUIREMENTS ================= */
+
+    .requirements-box {
+        background: #f8fafc;
+
+        border-left: 4px solid #2563eb;
+
+        padding: 18px 20px;
+
+        border-radius: 10px;
+
+        color: #475569;
+
+        line-height: 1.85;
+
+        white-space: pre-line;
+    }
+
+    /* ================= CODE ================= */
+
+    .code-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-bottom: 18px;
+    }
+
+    .code-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .code-label {
+        color: #64748b;
+
+        font-size: 12px;
+        font-weight: 700;
+
+        background: #f1f5f9;
+
+        padding: 6px 10px;
+
+        border-radius: 7px;
+    }
+
+    .copy-btn {
+        border: none;
+
+        background: #2563eb;
+        color: white;
+
+        padding: 8px 13px;
+
+        border-radius: 8px;
+
+        cursor: pointer;
+
+        font-size: 12px;
+        font-weight: 700;
+
+        transition: 0.2s;
+    }
+
+    .copy-btn:hover {
+        background: #1d4ed8;
+    }
+
+    .code-box {
+        background: #0f172a;
+
+        color: #e2e8f0;
+
+        padding: 25px;
+
+        border-radius: 13px;
+
+        overflow-x: auto;
+
+        font-family:
+            Consolas,
+            "Courier New",
+            monospace;
+
+        font-size: 14px;
+
+        line-height: 1.75;
+
+        white-space: pre-wrap;
+
+        tab-size: 4;
+
+        border: 1px solid #1e293b;
+    }
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+        background: #f8fafc;
+
+        border: 2px dashed #d6dce5;
+
+        border-radius: 14px;
+
+        padding: 28px;
+
+        text-align: center;
+    }
+
+    .output-box img {
+        display: block;
+
+        max-width: 100%;
+        max-height: 650px;
+
+        margin: auto;
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 10px 30px rgba(15,23,42,0.12);
+    }
+
+    .output-caption {
+        margin-top: 14px;
+
+        color: #64748b;
+
+        font-size: 13px;
+    }
+
+    .no-output {
+        padding: 25px;
+
+        color: #64748b;
+
+        font-size: 14px;
+    }
+
+    /* ================= VIVA ================= */
+
+    .viva-box {
+        background: #f8fafc;
+
+        border-radius: 12px;
+
+        padding: 20px;
+
+        color: #475569;
+
+        line-height: 1.9;
+
+        white-space: pre-line;
+    }
+
+    /* ================= NAVIGATION ================= */
+
+    .bottom-navigation {
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-top: 35px;
+    }
+
+    .nav-button {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+
+        padding: 12px 19px;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        transition: 0.2s;
+    }
+
+    .primary-button {
+        background: #2563eb;
+        color: white;
+    }
+
+    .primary-button:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+    }
+
+    .secondary-button {
+        background: white;
+
+        color: #334155;
+
+        border: 1px solid #d7dde6;
+    }
+
+    .secondary-button:hover {
+        border-color: #2563eb;
+
+        color: #2563eb;
+
+        background: #f8fbff;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #0f172a;
+
+        color: white;
+
+        text-align: center;
+
+        padding: 30px 20px;
+
+        margin-top: 65px;
+    }
+
+    footer strong {
+        color: white;
+    }
+
+    footer p {
+        color: #94a3b8;
+
+        font-size: 13px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 700px) {
 
         .navbar {
-            height: 70px;
-            background: white;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 7%;
-
-            box-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.06);
+            height: 64px;
+            padding: 0 5%;
         }
 
         .logo {
-            text-decoration: none;
-            color: #2563eb;
-
-            font-size: 21px;
-            font-weight: 700;
+            font-size: 15px;
         }
 
         .back-btn {
-            text-decoration: none;
-            color: #374151;
-
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 12px;
+            padding: 7px 9px;
         }
 
-        .back-btn:hover {
-            color: #2563eb;
+        .hero {
+            padding: 50px 5%;
         }
 
-
-        /* HEADER */
-
-        .practical-header {
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #1d4ed8
-                );
-
-            color: white;
-
-            padding: 60px 7%;
+        .hero h1 {
+            font-size: 30px;
         }
 
-        .practical-number {
-            display: inline-block;
-
-            background:
-                rgba(255,255,255,0.15);
-
-            padding: 8px 15px;
-
-            border-radius: 20px;
-
+        .subject-info {
             font-size: 13px;
+        }
+
+        .container {
+            width: 92%;
+            margin: 32px auto;
+        }
+
+        .content-card {
+            padding: 21px;
+
+            border-radius: 15px;
 
             margin-bottom: 18px;
         }
 
-        .practical-header h1 {
-            font-size: 40px;
-
-            line-height: 1.2;
-
-            margin-bottom: 12px;
-        }
-
-        .practical-header p {
-            opacity: 0.9;
-
-            font-size: 16px;
-        }
-
-
-        /* MAIN */
-
-        .container {
-            width: 86%;
-
-            max-width: 1100px;
-
-            margin: 50px auto;
-        }
-
-
-        /* CONTENT CARD */
-
-        .content-card {
-            background: white;
-
-            border-radius: 18px;
-
-            padding: 30px;
-
-            margin-bottom: 25px;
-
-            border: 1px solid #e5e7eb;
-
-            box-shadow:
-                0 8px 25px
-                rgba(0, 0, 0, 0.05);
-        }
-
-        .content-card h2 {
-            font-size: 23px;
-
-            color: #111827;
-
+        .section-heading {
             margin-bottom: 15px;
         }
 
-        .content-card h2 span {
-            margin-right: 8px;
+        .section-icon {
+            width: 38px;
+            height: 38px;
+
+            font-size: 17px;
         }
 
-        .content-card p {
-            color: #4b5563;
-
-            line-height: 1.8;
-
-            white-space: pre-line;
+        .section-heading h2 {
+            font-size: 18px;
         }
 
-
-        /* REQUIREMENTS */
-
-        .requirements {
-            padding-left: 20px;
-
-            color: #4b5563;
-
-            line-height: 1.8;
+        .section-content {
+            font-size: 14px;
         }
 
+        .code-header {
+            align-items: flex-start;
 
-        /* CODE */
+            flex-direction: column;
+        }
 
         .code-box {
-            background: #111827;
+            padding: 17px;
 
-            color: #e5e7eb;
-
-            padding: 25px;
-
-            border-radius: 12px;
-
-            overflow-x: auto;
-
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-
-            font-size: 14px;
+            font-size: 12px;
 
             line-height: 1.7;
-
-            white-space: pre-wrap;
         }
 
-
-        /* OUTPUT */
+        .copy-btn {
+            width: 100%;
+        }
 
         .output-box {
-            background: #f8fafc;
-
-            border: 2px dashed #d1d5db;
-
-            border-radius: 12px;
-
-            padding: 30px;
-
-            text-align: center;
-
-            color: #6b7280;
+            padding: 17px;
         }
 
-        .output-box img {
-            max-width: 100%;
-
-            border-radius: 10px;
+        .bottom-navigation {
+            flex-direction: column;
         }
 
-
-        /* VIVA */
-
-        .viva-list {
-            padding-left: 20px;
-
-            color: #4b5563;
-
-            line-height: 2;
+        .nav-button {
+            width: 100%;
         }
-
-
-        /* FOOTER */
 
         footer {
-            background: #111827;
-
-            color: white;
-
-            text-align: center;
-
-            padding: 25px;
-
-            margin-top: 50px;
+            margin-top: 40px;
         }
+    }
 
-        footer p {
-            color: #9ca3af;
-
-            font-size: 14px;
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 700px) {
-
-            .navbar {
-                padding: 0 5%;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .practical-header {
-                padding: 45px 5%;
-            }
-
-            .practical-header h1 {
-                font-size: 30px;
-            }
-
-            .container {
-                width: 90%;
-            }
-
-            .content-card {
-                padding: 22px;
-            }
-
-        }
-
-    </style>
+</style>
+```
 
 </head>
 
-
 <body>
 
+<!-- ================= NAVBAR ================= -->
 
-    <!-- NAVBAR -->
+<nav class="navbar">
 
-    <nav class="navbar">
+```
+<a href="/" class="logo">
+    🧪 Lab Practical Portal
+</a>
 
-        <a href="/" class="logo">
-            🧪 Lab Practical Portal
-        </a>
+<a
+    href="{% url 'subject_detail' practical.subject.id %}"
+    class="back-btn"
+>
+    ← Practicals
+</a>
+```
 
-        <a href="javascript:history.back()"
-           class="back-btn">
+</nav>
 
-            ← Back
+<!-- ================= HERO ================= -->
 
-        </a>
+<section class="hero">
 
-    </nav>
+```
+<div class="hero-content">
 
+    <span class="badge">
+        🧪 Practical {{ practical.practical_number }}
+    </span>
 
+    <h1>
+        {{ practical.title }}
+    </h1>
 
-    <!-- HEADER -->
+    <div class="subject-info">
 
-    <section class="practical-header">
+        <span class="subject-tag">
+            📚 {{ practical.subject.name }}
+        </span>
 
-        <div class="practical-number">
+        <span class="subject-tag">
+            🔖 {{ practical.subject.code }}
+        </span>
 
-            Practical
-            {{ practical.practical_number }}
+    </div>
 
+</div>
+```
+
+</section>
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+```
+<!-- AIM -->
+
+<section class="content-card">
+
+    <div class="section-heading">
+
+        <div class="section-icon">
+            🎯
         </div>
 
-        <h1>
-            {{ practical.title }}
-        </h1>
+        <h2>
+            Aim
+        </h2>
 
-        <p>
-            {{ practical.subject.name }}
-            •
-            {{ practical.subject.code }}
-        </p>
+    </div>
 
-    </section>
+    <div class="section-content">
+        {{ practical.aim }}
+    </div>
 
-
-
-    <!-- MAIN CONTENT -->
-
-    <main class="container">
+</section>
 
 
-        <!-- AIM -->
+<!-- REQUIREMENTS -->
 
-        <div class="content-card">
+{% if practical.requirements %}
 
-            <h2>
-                <span>🎯</span>
-                Aim
-            </h2>
+<section class="content-card">
 
-            <p>
-                {{ practical.aim }}
-            </p>
+    <div class="section-heading">
 
+        <div class="section-icon">
+            🧰
         </div>
 
+        <h2>
+            Requirements
+        </h2>
+
+    </div>
+
+    <div class="requirements-box">
+        {{ practical.requirements }}
+    </div>
+
+</section>
+
+{% endif %}
 
 
-        <!-- REQUIREMENTS -->
+<!-- THEORY -->
 
-        <div class="content-card">
+{% if practical.theory %}
 
-            <h2>
-                <span>🧰</span>
-                Requirements
-            </h2>
+<section class="content-card">
 
-            <p>
-                {{ practical.requirements }}
-            </p>
+    <div class="section-heading">
 
+        <div class="section-icon">
+            📖
         </div>
 
+        <h2>
+            Theory
+        </h2>
+
+    </div>
+
+    <div class="section-content">
+        {{ practical.theory }}
+    </div>
+
+</section>
+
+{% endif %}
 
 
-        <!-- THEORY -->
+<!-- PROCEDURE -->
 
-        <div class="content-card">
+{% if practical.procedure %}
 
-            <h2>
-                <span>📖</span>
-                Theory
-            </h2>
+<section class="content-card">
 
-            <p>
-                {{ practical.theory }}
-            </p>
+    <div class="section-heading">
 
+        <div class="section-icon">
+            📝
         </div>
 
+        <h2>
+            Procedure
+        </h2>
+
+    </div>
+
+    <div class="section-content">
+        {{ practical.procedure }}
+    </div>
+
+</section>
+
+{% endif %}
 
 
-        <!-- PROCEDURE -->
+<!-- CODE -->
 
-        <div class="content-card">
+{% if practical.code %}
+
+<section class="content-card">
+
+    <div class="code-header">
+
+        <div class="code-title">
+
+            <div class="section-icon">
+                💻
+            </div>
 
             <h2>
-                <span>📝</span>
-                Procedure
-            </h2>
-
-            <p>
-                {{ practical.procedure }}
-            </p>
-
-        </div>
-
-
-
-        <!-- CODE -->
-
-        <div class="content-card">
-
-            <h2>
-                <span>💻</span>
                 Program / Code
             </h2>
 
-            <div class="code-box">{{ practical.code }}</div>
+        </div>
+
+        <div>
+
+            <span class="code-label">
+                Python / Programming
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode()"
+            >
+                📋 Copy Code
+            </button>
 
         </div>
 
+    </div>
+
+    <div
+        class="code-box"
+        id="codeContent"
+    >{{ practical.code }}</div>
+
+</section>
+
+{% endif %}
 
 
-        <!-- OUTPUT -->
+<!-- OUTPUT -->
 
-        <div class="content-card">
+<section class="content-card">
 
-            <h2>
-                <span>🖥️</span>
-                Output
-            </h2>
+    <div class="section-heading">
 
-            <div class="output-box">
-
-                {% if practical.output_image %}
-
-                    <img
-                        src="{{ practical.output_image.url }}"
-                        alt="Practical Output"
-                    >
-
-                {% else %}
-
-                    Output image will be
-                    available here.
-
-                {% endif %}
-
-            </div>
-
+        <div class="section-icon">
+            🖥️
         </div>
 
+        <h2>
+            Output
+        </h2>
 
+    </div>
 
-        <!-- VIVA -->
+    <div class="output-box">
 
-        <div class="content-card">
+        {% if practical.output_image %}
 
-            <h2>
-                <span>🎤</span>
-                Viva Questions
-            </h2>
+            <img
+                src="{{ practical.output_image.url }}"
+                alt="Output of {{ practical.title }}"
+            >
 
-            <p>
-                {{ practical.viva_questions }}
+            <p class="output-caption">
+                Practical Output
             </p>
 
+        {% else %}
+
+            <div class="no-output">
+                📷 Output image will be available here.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- VIVA -->
+
+{% if practical.viva_questions %}
+
+<section class="content-card">
+
+    <div class="section-heading">
+
+        <div class="section-icon">
+            🎤
         </div>
 
+        <h2>
+            Viva Questions
+        </h2>
 
-    </main>
+    </div>
+
+    <div class="viva-box">
+        {{ practical.viva_questions }}
+    </div>
+
+</section>
+
+{% endif %}
 
 
+<!-- NAVIGATION -->
 
-    <!-- FOOTER -->
+<div class="bottom-navigation">
 
-    <footer>
+    <a
+        href="{% url 'subject_detail' practical.subject.id %}"
+        class="nav-button secondary-button"
+    >
+        ← All Practicals
+    </a>
 
-        <p>
-            © 2026 Lab Practical Portal |
-            Built with Django
-        </p>
+    <a
+        href="#"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'); return false;"
+        class="nav-button primary-button"
+    >
+        ↑ Back to Top
+    </a>
 
-    </footer>
+</div>
+```
 
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+```
+<p>
+    © 2026 <strong>Lab Practical Portal</strong>
+    · Built with Django
+</p>
+```
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    function copyCode() {
+
+        const code =
+            document.getElementById("codeContent").innerText;
+
+        navigator.clipboard.writeText(code);
+
+        const button =
+            document.querySelector(".copy-btn");
+
+        button.innerText = "✓ Copied!";
+
+        setTimeout(function () {
+
+            button.innerText = "📋 Copy Code";
+
+        }, 1800);
+
+    }
+
+</script>
 
 </body>
 
