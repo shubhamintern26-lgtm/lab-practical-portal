@@ -6,20 +6,32 @@ from .models import Subject, Practical
 
 def home(request):
     subjects = Subject.objects.all()
-    return render(request, "home/index.html", {
-        "subjects": subjects
-    })
+
+    return render(
+        request,
+        "home/index.html",
+        {
+            "subjects": subjects
+        }
+    )
 
 
 def subject_detail(request, subject_id):
-    subject = get_object_or_404(Subject, id=subject_id)
+    subject = get_object_or_404(
+        Subject,
+        id=subject_id
+    )
 
     practicals = subject.practicals.all()
 
-    return render(request, "practicals/subject_detail.html", {
-        "subject": subject,
-        "practicals": practicals
-    })
+    return render(
+        request,
+        "practicals/subject_detail.html",
+        {
+            "subject": subject,
+            "practicals": practicals
+        }
+    )
 
 
 def practical_detail(request, practical_id):
@@ -28,9 +40,13 @@ def practical_detail(request, practical_id):
         id=practical_id
     )
 
-    return render(request, "practicals/practical_detail.html", {
-        "practical": practical
-    })
+    return render(
+        request,
+        "practicals/practical_detail.html",
+        {
+            "practical": practical
+        }
+    )
 
 
 @login_required
@@ -41,6 +57,7 @@ def dashboard(request):
 
     total_subjects = subjects.count()
     total_practicals = practicals.count()
+
     total_qr_codes = subjects.exclude(
         qr_code=""
     ).count()
@@ -68,6 +85,8 @@ def dashboard(request):
         "dashboard.html",
         context
     )
+
+
 def qr_print(request, subject_id):
     subject = get_object_or_404(
         Subject,

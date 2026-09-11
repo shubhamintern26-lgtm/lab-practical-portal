@@ -4,7 +4,6 @@
 
 <head>
 
-```
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,19 +25,20 @@
         line-height: 1.5;
     }
 
+
     /* =========================
        NAVBAR
     ========================= */
 
     .navbar {
-        height: 72px;
+        min-height: 72px;
         background: rgba(255, 255, 255, 0.96);
 
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        padding: 0 7%;
+        padding: 12px 7%;
 
         border-bottom: 1px solid #e5e7eb;
 
@@ -48,6 +48,7 @@
 
         backdrop-filter: blur(10px);
     }
+
 
     .logo {
         display: flex;
@@ -59,6 +60,7 @@
         font-size: 20px;
         font-weight: 800;
     }
+
 
     .logo-icon {
         width: 40px;
@@ -75,9 +77,18 @@
         font-size: 21px;
     }
 
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+
     .home-btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 7px;
 
         padding: 10px 16px;
@@ -98,10 +109,23 @@
         transition: 0.25s;
     }
 
+
     .home-btn:hover {
         color: #2563eb;
         border-color: #bfdbfe;
         background: #eff6ff;
+    }
+
+
+    .logout-btn {
+        color: #dc2626;
+    }
+
+
+    .logout-btn:hover {
+        color: #b91c1c;
+        border-color: #fecaca;
+        background: #fef2f2;
     }
 
 
@@ -125,6 +149,7 @@
         padding: 58px 7%;
     }
 
+
     .dashboard-header::before {
         content: "";
 
@@ -140,6 +165,7 @@
         right: 8%;
         top: -100px;
     }
+
 
     .dashboard-header::after {
         content: "";
@@ -157,6 +183,7 @@
         bottom: -100px;
     }
 
+
     .header-content {
         position: relative;
         z-index: 2;
@@ -164,6 +191,7 @@
         max-width: 1200px;
         margin: auto;
     }
+
 
     .header-badge {
         display: inline-block;
@@ -182,6 +210,7 @@
         font-weight: 700;
     }
 
+
     .dashboard-header h1 {
         font-size: 40px;
 
@@ -189,6 +218,7 @@
 
         letter-spacing: -0.5px;
     }
+
 
     .dashboard-header p {
         font-size: 16px;
@@ -223,11 +253,13 @@
         margin-bottom: 20px;
     }
 
+
     .section-title h2 {
         font-size: 25px;
 
         color: #111827;
     }
+
 
     .section-subtitle {
         color: #6b7280;
@@ -251,6 +283,7 @@
         margin-bottom: 45px;
     }
 
+
     .stat-card {
         position: relative;
 
@@ -270,6 +303,7 @@
         transition: 0.3s;
     }
 
+
     .stat-card::after {
         content: "";
 
@@ -286,12 +320,14 @@
         top: -35px;
     }
 
+
     .stat-card:hover {
         transform: translateY(-5px);
 
         box-shadow:
             0 15px 35px rgba(0,0,0,0.09);
     }
+
 
     .stat-icon {
         position: relative;
@@ -313,6 +349,7 @@
         margin-bottom: 17px;
     }
 
+
     .stat-card h2 {
         position: relative;
         z-index: 2;
@@ -323,6 +360,7 @@
 
         margin-bottom: 3px;
     }
+
 
     .stat-card p {
         position: relative;
@@ -349,6 +387,7 @@
         margin-bottom: 48px;
     }
 
+
     .action-card {
         background: white;
 
@@ -365,6 +404,7 @@
         transition: 0.3s;
     }
 
+
     .action-card:hover {
         transform: translateY(-5px);
 
@@ -373,6 +413,7 @@
         box-shadow:
             0 15px 35px rgba(0,0,0,0.08);
     }
+
 
     .action-icon {
         width: 52px;
@@ -391,11 +432,13 @@
         margin-bottom: 17px;
     }
 
+
     .action-card h3 {
         font-size: 18px;
 
         margin-bottom: 7px;
     }
+
 
     .action-card p {
         color: #6b7280;
@@ -419,6 +462,7 @@
         gap: 22px;
     }
 
+
     .recent-card {
         background: white;
 
@@ -432,6 +476,7 @@
             0 7px 25px rgba(0,0,0,0.05);
     }
 
+
     .recent-header {
         padding: 19px 22px;
 
@@ -442,9 +487,11 @@
         justify-content: space-between;
     }
 
+
     .recent-header h3 {
         font-size: 17px;
     }
+
 
     .view-all {
         text-decoration: none;
@@ -456,13 +503,16 @@
         font-weight: 700;
     }
 
+
     .view-all:hover {
         text-decoration: underline;
     }
 
+
     .recent-list {
         padding: 4px 0;
     }
+
 
     .recent-item {
         padding: 16px 22px;
@@ -476,13 +526,16 @@
         border-bottom: 1px solid #f1f5f9;
     }
 
+
     .recent-item:last-child {
         border-bottom: none;
     }
 
+
     .item-info {
         min-width: 0;
     }
+
 
     .item-info h4 {
         font-size: 14px;
@@ -498,6 +551,7 @@
         text-overflow: ellipsis;
     }
 
+
     .item-info p {
         font-size: 12px;
 
@@ -509,6 +563,7 @@
 
         text-overflow: ellipsis;
     }
+
 
     .code-badge,
     .practical-badge {
@@ -523,10 +578,12 @@
         font-weight: 800;
     }
 
+
     .code-badge {
         background: #dbeafe;
         color: #2563eb;
     }
+
 
     .practical-badge {
         background: #f3e8ff;
@@ -565,6 +622,7 @@
         margin-top: 65px;
     }
 
+
     footer p {
         color: #9ca3af;
 
@@ -594,14 +652,16 @@
     @media (max-width: 650px) {
 
         .navbar {
-            height: 65px;
+            min-height: 65px;
 
-            padding: 0 5%;
+            padding: 10px 5%;
         }
+
 
         .logo {
             font-size: 16px;
         }
+
 
         .logo-icon {
             width: 35px;
@@ -610,23 +670,33 @@
             font-size: 18px;
         }
 
+
+        .nav-actions {
+            gap: 6px;
+        }
+
+
         .home-btn {
-            padding: 8px 11px;
+            padding: 8px 10px;
 
             font-size: 12px;
         }
+
 
         .dashboard-header {
             padding: 43px 5%;
         }
 
+
         .dashboard-header h1 {
             font-size: 30px;
         }
 
+
         .dashboard-header p {
             font-size: 14px;
         }
+
 
         .container {
             width: 90%;
@@ -634,22 +704,27 @@
             margin: 35px auto;
         }
 
+
         .stats-grid,
         .actions-grid {
             grid-template-columns: 1fr;
         }
 
+
         .section-title h2 {
             font-size: 21px;
         }
+
 
         .recent-header {
             padding: 17px;
         }
 
+
         .recent-item {
             padding: 15px 17px;
         }
+
 
         .item-info h4 {
             max-width: 170px;
@@ -658,13 +733,13 @@
     }
 
 </style>
-```
 
 </head>
 
+
 <body>
 
-```
+
 <!-- =========================
      NAVBAR
 ========================== -->
@@ -681,9 +756,18 @@
 
     </div>
 
-    <a href="/" class="home-btn">
-        ← Home
-    </a>
+
+    <div class="nav-actions">
+
+        <a href="/" class="home-btn">
+            ← Home
+        </a>
+
+        <a href="{% url 'logout' %}" class="home-btn logout-btn">
+            🚪 Logout
+        </a>
+
+    </div>
 
 </nav>
 
@@ -1056,7 +1140,7 @@
     </p>
 
 </footer>
-```
+
 
 </body>
 
