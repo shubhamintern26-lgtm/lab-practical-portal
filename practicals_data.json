@@ -1,0 +1,131 @@
+[
+{
+  "model": "practicals.subject",
+  "pk": 1,
+  "fields": {
+    "name": "Python Programming",
+    "code": "AIML501",
+    "description": "Python programming laboratory practicals for AIML students.",
+    "qr_code": "qrcodes/AIML501_QR.png",
+    "created_at": "2026-08-26T16:22:03.846Z"
+  }
+},
+{
+  "model": "practicals.subject",
+  "pk": 2,
+  "fields": {
+    "name": "Theory of Computation",
+    "code": "AL601",
+    "description": "Laboratory practicals covering finite automata, regular expressions, grammars, pushdown automata and Turing machines.",
+    "qr_code": "qrcodes/AL601_QR.png",
+    "created_at": "2026-08-26T17:32:23.635Z"
+  }
+},
+{
+  "model": "practicals.subject",
+  "pk": 3,
+  "fields": {
+    "name": "Computer Networks",
+    "code": "AL602",
+    "description": "Laboratory practicals covering computer networking concepts, network protocols, network devices, IP addressing, network utilities and socket programming.",
+    "qr_code": "qrcodes/AL602_QR.png",
+    "created_at": "2026-08-26T17:38:36.417Z"
+  }
+},
+{
+  "model": "practicals.subject",
+  "pk": 4,
+  "fields": {
+    "name": "Cloud computing",
+    "code": "AL604(A)",
+    "description": "Laboratory practicals covering cloud computing concepts, virtualization, cloud services, deployment models, storage and cloud-based applications.",
+    "qr_code": "qrcodes/AL604A_QR.png",
+    "created_at": "2026-08-26T17:39:21.248Z"
+  }
+},
+{
+  "model": "practicals.practical",
+  "pk": 1,
+  "fields": {
+    "subject": 1,
+    "practical_number": 1,
+    "title": "Introduction to Python Programming",
+    "aim": "To study the basic concepts of Python programming and execute simple Python programs.",
+    "requirements": "Python 3.x, VS Code or Python IDLE",
+    "theory": "Python is a high-level, interpreted and general-purpose programming language. It provides simple and readable syntax and supports object-oriented, procedural and functional programming paradigms.",
+    "procedure": "1. Install Python.\r\n2. Open VS Code or Python IDLE.\r\n3. Create a new Python file.\r\n4. Write the required Python program.\r\n5. Execute the program.\r\n6. Observe the output.",
+    "code": "print(\"Hello, World!\")\r\nprint(\"Welcome to Python Programming\")",
+    "output_image": "",
+    "viva_questions": "1. What is Python?\r\n2. Who developed Python?\r\n3. What are the features of Python?\r\n4. Is Python compiled or interpreted?\r\n5. What is the extension of a Python file?",
+    "created_at": "2026-08-26T16:35:04.205Z"
+  }
+},
+{
+  "model": "practicals.practical",
+  "pk": 2,
+  "fields": {
+    "subject": 2,
+    "practical_number": 1,
+    "title": "Design and Implementation of Deterministic Finite Automaton (DFA)",
+    "aim": "To design and implement a Deterministic Finite Automaton (DFA) for accepting strings belonging to a specified language.",
+    "requirements": "Python 3.x\r\nVS Code / IDLE\r\nBasic knowledge of Python programming\r\nBasic knowledge of Finite Automata",
+    "theory": "A Deterministic Finite Automaton (DFA) is a finite state machine used to recognize regular languages.\r\n\r\nA DFA consists of five components:\r\n\r\nQ = A finite set of states\r\nΣ = A finite input alphabet\r\nδ = Transition function\r\nq0 = Initial state\r\nF = Set of final or accepting states\r\n\r\nThe transition function of a DFA maps each state and input symbol to exactly one state.\r\n\r\nFor example, consider a DFA over the alphabet {0, 1} that accepts strings ending with 1.\r\n\r\nThe DFA contains two states:\r\nq0 – Initial state\r\nq1 – Final state\r\n\r\nTransitions:\r\nFrom q0, input 0 leads to q0.\r\nFrom q0, input 1 leads to q1.\r\nFrom q1, input 0 leads to q0.\r\nFrom q1, input 1 leads to q1.\r\n\r\nAfter processing the complete input string, if the machine is in the final state q1, the string is accepted; otherwise, it is rejected.\r\n\r\nDFA is deterministic because for every state and every input symbol, there is exactly one possible transition.",
+    "procedure": "1. Define the states of the DFA.\r\n2. Define the input alphabet.\r\n3. Select the initial state.\r\n4. Select the final/accepting state.\r\n5. Define the transition function.\r\n6. Take an input string from the user.\r\n7. Start from the initial state.\r\n8. Read each character of the input string one by one.\r\n9. Move to the corresponding state according to the transition function.\r\n10. After processing the complete string, check the current state.\r\n11. If the current state is an accepting state, display \"String Accepted\".\r\n12. Otherwise, display \"String Rejected\".",
+    "code": "# DFA to accept strings ending with 1\r\n\r\ndef dfa_ending_with_1(string):\r\n\r\n    state = \"q0\"\r\n\r\n    for symbol in string:\r\n\r\n        if state == \"q0\":\r\n\r\n            if symbol == \"0\":\r\n                state = \"q0\"\r\n\r\n            elif symbol == \"1\":\r\n                state = \"q1\"\r\n\r\n            else:\r\n                return False\r\n\r\n        elif state == \"q1\":\r\n\r\n            if symbol == \"0\":\r\n                state = \"q0\"\r\n\r\n            elif symbol == \"1\":\r\n                state = \"q1\"\r\n\r\n            else:\r\n                return False\r\n\r\n    return state == \"q1\"\r\n\r\n\r\n# Taking input from user\r\n\r\nstring = input(\"Enter a binary string: \")\r\n\r\nif dfa_ending_with_1(string):\r\n    print(\"String Accepted\")\r\nelse:\r\n    print(\"String Rejected\")",
+    "output_image": "",
+    "viva_questions": "1. What is a DFA?\r\n2. What are the components of a DFA?\r\n3. What is the difference between DFA and NFA?\r\n4. What is a transition function?\r\n5. What is an initial state?\r\n6. What is a final or accepting state?\r\n7. Why is DFA called deterministic?\r\n8. Can a DFA have more than one transition for the same input symbol from a state?\r\n9. What type of languages can DFA recognize?\r\n10. Can a DFA contain an empty transition?\r\n11. What is a regular language?\r\n12. What happens if a string ends in a non-final state?\r\n13. What is the role of the input alphabet in DFA?\r\n14. Can a DFA have multiple final states?\r\n15. Give an example of a language that can be recognized by a DFA.",
+    "created_at": "2026-08-26T17:35:01.276Z"
+  }
+},
+{
+  "model": "practicals.practical",
+  "pk": 3,
+  "fields": {
+    "subject": 2,
+    "practical_number": 2,
+    "title": "Conversion of NFA to DFA",
+    "aim": "To design a Non-Deterministic Finite Automaton (NFA) and convert it into an equivalent Deterministic Finite Automaton (DFA).",
+    "requirements": "Python 3.x\r\nVS Code / IDLE\r\nBasic knowledge of Python programming\r\nBasic knowledge of NFA and DFA",
+    "theory": "A Non-Deterministic Finite Automaton (NFA) is a finite automaton in which a state can have zero, one, or multiple transitions for the same input symbol.\r\n\r\nUnlike a DFA, an NFA can have multiple possible next states for a given current state and input symbol.\r\n\r\nEvery NFA has an equivalent DFA that recognizes the same language.\r\n\r\nThe standard method used to convert an NFA into a DFA is called the Subset Construction method.\r\n\r\nIn this method, each DFA state represents a set of NFA states.\r\n\r\nFor example, if the NFA has states {q0, q1, q2}, possible DFA states may be {q0}, {q0,q1}, {q1,q2}, etc.\r\n\r\nThe initial DFA state is the set containing the initial NFA state.\r\n\r\nA DFA state is considered final if it contains at least one final state of the NFA.\r\n\r\nThe subset construction method guarantees that the resulting DFA accepts exactly the same language as the original NFA.",
+    "procedure": "1. Define the states of the NFA.\r\n2. Define the input alphabet.\r\n3. Define the initial state.\r\n4. Define the final state or states.\r\n5. Define the NFA transition function.\r\n6. Start the subset construction from the initial state.\r\n7. Treat each set of NFA states as one DFA state.\r\n8. Calculate transitions for every input symbol.\r\n9. Continue until no new DFA states are generated.\r\n10. Mark every DFA state containing an NFA final state as a final state.\r\n11. Test the resulting DFA with an input string.\r\n12. Display whether the string is accepted or rejected.",
+    "code": "from collections import deque\r\n\r\n# NFA transition table\r\n# Example NFA:\r\n# Accepts binary strings containing at least one '1'\r\n\r\nnfa = {\r\n    'q0': {\r\n        '0': {'q0'},\r\n        '1': {'q0', 'q1'}\r\n    },\r\n\r\n    'q1': {\r\n        '0': {'q1'},\r\n        '1': {'q1'}\r\n    }\r\n}\r\n\r\nalphabet = {'0', '1'}\r\n\r\nstart_state = frozenset({'q0'})\r\nfinal_states = {'q1'}\r\n\r\n\r\ndef nfa_to_dfa(nfa, alphabet, start_state, final_states):\r\n\r\n    dfa = {}\r\n    queue = deque([start_state])\r\n    visited = set()\r\n\r\n    while queue:\r\n\r\n        current = queue.popleft()\r\n\r\n        if current in visited:\r\n            continue\r\n\r\n        visited.add(current)\r\n        dfa[current] = {}\r\n\r\n        for symbol in alphabet:\r\n\r\n            next_states = set()\r\n\r\n            for state in current:\r\n\r\n                next_states.update(\r\n                    nfa.get(state, {}).get(symbol, set())\r\n                )\r\n\r\n            next_state = frozenset(next_states)\r\n\r\n            dfa[current][symbol] = next_state\r\n\r\n            if next_state not in visited:\r\n                queue.append(next_state)\r\n\r\n    return dfa\r\n\r\n\r\ndfa = nfa_to_dfa(\r\n    nfa,\r\n    alphabet,\r\n    start_state,\r\n    final_states\r\n)\r\n\r\n\r\nprint(\"Equivalent DFA\")\r\nprint(\"----------------\")\r\n\r\nfor state, transitions in dfa.items():\r\n\r\n    print(f\"DFA State {set(state)}\")\r\n\r\n    for symbol, next_state in transitions.items():\r\n\r\n        print(\r\n            f\"  On {symbol} -> {set(next_state)}\"\r\n        )\r\n\r\n\r\nprint(\"\\nDFA Final States\")\r\n\r\nfor state in dfa:\r\n\r\n    if state.intersection(final_states):\r\n\r\n        print(set(state))",
+    "output_image": "",
+    "viva_questions": "1. What is an NFA?\r\n2. What is a DFA?\r\n3. What is the main difference between DFA and NFA?\r\n4. Can an NFA have multiple transitions for the same input symbol?\r\n5. What is subset construction?\r\n6. Why is subset construction used?\r\n7. Can every NFA be converted into a DFA?\r\n8. Does NFA recognize a different class of languages than DFA?\r\n9. How is the initial state of the DFA determined?\r\n10. How are final states of the DFA determined?\r\n11. What is the maximum number of states in the equivalent DFA?\r\n12. What is an epsilon transition?\r\n13. What is a transition function?\r\n14. What is the purpose of frozenset in the Python program?\r\n15. Does conversion from NFA to DFA change the language accepted by the automaton?",
+    "created_at": "2026-08-26T17:37:12.530Z"
+  }
+},
+{
+  "model": "practicals.practical",
+  "pk": 4,
+  "fields": {
+    "subject": 4,
+    "practical_number": 1,
+    "title": "Study and Implementation of Virtualization Using VirtualBox",
+    "aim": "To study the concept of virtualization and create a virtual machine using Oracle VirtualBox.",
+    "requirements": "1. Computer/Laptop with minimum 8 GB RAM\r\n2. Windows/Linux operating system\r\n3. Oracle VirtualBox\r\n4. Ubuntu ISO image\r\n5. Basic knowledge of operating systems and virtualization\r\n6. Internet connection for downloading required software",
+    "theory": "Virtualization is a fundamental technology used in cloud computing. It allows a physical computer's hardware resources such as CPU, memory, storage and network resources to be shared among multiple virtual machines.\r\n\r\nA Virtual Machine (VM) is a software-based computer that runs an operating system and applications independently from the host operating system.\r\n\r\nOracle VirtualBox is a virtualization software that allows users to create and manage virtual machines on a physical computer.\r\n\r\nIn cloud computing, virtualization provides resource sharing, isolation, scalability and efficient utilization of physical hardware.\r\n\r\nA hypervisor is the software layer responsible for creating and managing virtual machines. VirtualBox works as a hosted (Type-2) hypervisor because it runs on top of an existing host operating system.\r\n\r\nThe basic process of virtualization is:\r\nPhysical Machine → Hypervisor → Virtual Machine → Guest Operating System.\r\n\r\nVirtualization is widely used in cloud platforms because multiple virtual machines can run on the same physical server.",
+    "procedure": "1. Download and install Oracle VirtualBox on the host computer.\r\n2. Download an Ubuntu ISO image.\r\n3. Open Oracle VirtualBox.\r\n4. Click on the New option to create a virtual machine.\r\n5. Enter a suitable name for the virtual machine.\r\n6. Select Linux as the operating system and Ubuntu as the version.\r\n7. Allocate suitable RAM to the virtual machine.\r\n8. Create a virtual hard disk.\r\n9. Select the Ubuntu ISO image as the installation media.\r\n10. Start the virtual machine.\r\n11. Follow the Ubuntu installation instructions.\r\n12. After installation, start the virtual machine.\r\n13. Verify that the guest operating system is running successfully.\r\n14. Observe the CPU, memory and storage resources assigned to the virtual machine.",
+    "code": "This practical is based on virtualization software and does not require a programming code.\r\n\r\nThe implementation is performed using Oracle VirtualBox by creating and running an Ubuntu virtual machine.",
+    "output_image": "",
+    "viva_questions": "1. What is virtualization?\r\n2. What is a virtual machine?\r\n3. What is a hypervisor?\r\n4. What is the difference between a physical machine and a virtual machine?\r\n5. What is Oracle VirtualBox?\r\n6. What is a host operating system?\r\n7. What is a guest operating system?\r\n8. What is a Type-1 hypervisor?\r\n9. What is a Type-2 hypervisor?\r\n10. Why is virtualization important in cloud computing?\r\n11. What are the advantages of virtualization?\r\n12. What is resource sharing?\r\n13. What is VM isolation?\r\n14. How does virtualization improve hardware utilization?\r\n15. Give two real-world applications of virtualization.",
+    "created_at": "2026-08-26T17:41:07.366Z"
+  }
+},
+{
+  "model": "practicals.practical",
+  "pk": 5,
+  "fields": {
+    "subject": 3,
+    "practical_number": 1,
+    "title": "Study and Implementation of Basic Network Commands",
+    "aim": "To study and implement basic network commands used for network configuration, connectivity testing and troubleshooting.",
+    "requirements": "1. Computer/Laptop\r\n2. Windows or Linux operating system\r\n3. Command Prompt / Terminal\r\n4. Active network connection\r\n5. Basic knowledge of computer networks",
+    "theory": "Network commands are useful tools for configuring, monitoring, testing and troubleshooting computer networks.\r\n\r\nSome commonly used network commands are:\r\n\r\n1. ipconfig – Displays IP address, subnet mask and default gateway information in Windows.\r\n\r\n2. ping – Tests connectivity between the local computer and another network device by sending ICMP packets.\r\n\r\n3. tracert – Displays the path followed by packets from the local computer to a destination.\r\n\r\n4. nslookup – Retrieves DNS information and resolves a domain name into an IP address.\r\n\r\n5. hostname – Displays the name of the current computer.\r\n\r\n6. arp – Displays and manages the ARP cache, which contains mappings between IP addresses and MAC addresses.\r\n\r\nThese commands are commonly used by network administrators and developers to diagnose network connectivity and configuration problems.",
+    "procedure": "1. Open Command Prompt on Windows or Terminal on Linux.\r\n2. Execute the hostname command and observe the computer name.\r\n3. Execute the ipconfig command to display network configuration.\r\n4. Execute the ping command with a known IP address or domain name.\r\n5. Observe the packets sent, received and lost.\r\n6. Execute the tracert command with a domain name.\r\n7. Observe the different network hops between the computer and destination.\r\n8. Execute the nslookup command with a domain name.\r\n9. Observe the DNS server and IP address information.\r\n10. Execute the arp -a command to display the ARP cache.\r\n11. Record the output of each command.\r\n12. Analyze the information obtained from the commands.",
+    "code": "Basic Network Commands:\r\n\r\nipconfig\r\nping google.com\r\ntracert google.com\r\nnslookup google.com\r\nhostname\r\narp -a",
+    "output_image": "",
+    "viva_questions": "1. What is a computer network?\r\n2. What is an IP address?\r\n3. What is the purpose of the ipconfig command?\r\n4. What is the use of the ping command?\r\n5. What is ICMP?\r\n6. What is DNS?\r\n7. What is the purpose of nslookup?\r\n8. What is the use of tracert?\r\n9. What is a MAC address?\r\n10. What is ARP?\r\n11. What is the difference between IP address and MAC address?\r\n12. What is a default gateway?\r\n13. What is a subnet mask?\r\n14. What is network troubleshooting?\r\n15. Which command is used to check network connectivity?",
+    "created_at": "2026-08-26T17:42:55.005Z"
+  }
+}
+]
