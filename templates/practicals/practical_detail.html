@@ -1,10 +1,10 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
 
-```
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -396,6 +396,227 @@
         white-space: pre-line;
     }
 
+    /* ================= AI ASSISTANT ================= */
+
+    .ai-card {
+        background:
+            linear-gradient(
+                135deg,
+                #ffffff,
+                #f8fbff
+            );
+
+        border: 1px solid #dbeafe;
+
+        border-radius: 20px;
+
+        padding: 30px;
+
+        margin-bottom: 24px;
+
+        box-shadow:
+            0 10px 30px rgba(37,99,235,0.08);
+    }
+
+    .ai-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+
+        margin-bottom: 22px;
+    }
+
+    .ai-icon {
+        width: 48px;
+        height: 48px;
+
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 14px;
+
+        background: #dbeafe;
+
+        font-size: 24px;
+    }
+
+    .ai-header h2 {
+        color: #111827;
+
+        font-size: 22px;
+
+        margin-bottom: 4px;
+    }
+
+    .ai-header p {
+        color: #64748b;
+
+        font-size: 14px;
+    }
+
+    .ai-quick-questions {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 9px;
+
+        margin-bottom: 18px;
+    }
+
+    .quick-btn {
+        border: 1px solid #dbeafe;
+
+        background: #eff6ff;
+
+        color: #1d4ed8;
+
+        padding: 9px 13px;
+
+        border-radius: 9px;
+
+        cursor: pointer;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        transition: 0.2s;
+    }
+
+    .quick-btn:hover {
+        background: #dbeafe;
+
+        border-color: #93c5fd;
+    }
+
+    .ai-input-area {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    #aiQuestion {
+        width: 100%;
+
+        min-height: 105px;
+
+        resize: vertical;
+
+        padding: 15px 16px;
+
+        border: 1px solid #d7dde6;
+
+        border-radius: 12px;
+
+        outline: none;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        color: #172033;
+
+        background: white;
+
+        transition: 0.2s;
+    }
+
+    #aiQuestion:focus {
+        border-color: #60a5fa;
+
+        box-shadow:
+            0 0 0 3px rgba(37,99,235,0.10);
+    }
+
+    .ai-actions {
+        display: flex;
+
+        justify-content: flex-end;
+    }
+
+    .ai-ask-btn {
+        border: none;
+
+        background: #2563eb;
+
+        color: white;
+
+        padding: 11px 20px;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        transition: 0.2s;
+    }
+
+    .ai-ask-btn:hover {
+        background: #1d4ed8;
+
+        transform: translateY(-1px);
+    }
+
+    .ai-ask-btn:disabled {
+        opacity: 0.65;
+
+        cursor: not-allowed;
+
+        transform: none;
+    }
+
+    .ai-loading {
+        display: none;
+
+        margin-top: 18px;
+
+        padding: 13px 15px;
+
+        border-radius: 10px;
+
+        background: #eff6ff;
+
+        color: #1d4ed8;
+
+        font-size: 13px;
+
+        font-weight: 600;
+    }
+
+    .ai-answer {
+        display: none;
+
+        margin-top: 18px;
+
+        padding: 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #dbeafe;
+
+        border-left: 4px solid #2563eb;
+
+        border-radius: 12px;
+
+        color: #334155;
+
+        font-size: 14px;
+
+        line-height: 1.85;
+
+        white-space: pre-wrap;
+
+        overflow-wrap: anywhere;
+    }
+
     /* ================= NAVIGATION ================= */
 
     .bottom-navigation {
@@ -434,6 +655,7 @@
 
     .primary-button:hover {
         background: #1d4ed8;
+
         transform: translateY(-1px);
     }
 
@@ -561,6 +783,38 @@
             padding: 17px;
         }
 
+        .ai-card {
+            padding: 21px;
+
+            border-radius: 15px;
+        }
+
+        .ai-header h2 {
+            font-size: 19px;
+        }
+
+        .ai-header p {
+            font-size: 13px;
+        }
+
+        .ai-quick-questions {
+            flex-direction: column;
+        }
+
+        .quick-btn {
+            width: 100%;
+
+            text-align: left;
+        }
+
+        .ai-actions {
+            justify-content: stretch;
+        }
+
+        .ai-ask-btn {
+            width: 100%;
+        }
+
         .bottom-navigation {
             flex-direction: column;
         }
@@ -575,351 +829,673 @@
     }
 
 </style>
-```
 
 </head>
 
+
 <body>
+
 
 <!-- ================= NAVBAR ================= -->
 
 <nav class="navbar">
 
-```
-<a href="/" class="logo">
-    🧪 Lab Practical Portal
-</a>
+    <a href="/" class="logo">
+        🧪 Lab Practical Portal
+    </a>
 
-<a
-    href="{% url 'subject_detail' practical.subject.id %}"
-    class="back-btn"
->
-    ← Practicals
-</a>
-```
+    <a
+        href="{% url 'subject_detail' practical.subject.id %}"
+        class="back-btn"
+    >
+        ← Practicals
+    </a>
 
 </nav>
+
 
 <!-- ================= HERO ================= -->
 
 <section class="hero">
 
-```
-<div class="hero-content">
+    <div class="hero-content">
 
-    <span class="badge">
-        🧪 Practical {{ practical.practical_number }}
-    </span>
-
-    <h1>
-        {{ practical.title }}
-    </h1>
-
-    <div class="subject-info">
-
-        <span class="subject-tag">
-            📚 {{ practical.subject.name }}
+        <span class="badge">
+            🧪 Practical {{ practical.practical_number }}
         </span>
 
-        <span class="subject-tag">
-            🔖 {{ practical.subject.code }}
-        </span>
+        <h1>
+            {{ practical.title }}
+        </h1>
+
+        <div class="subject-info">
+
+            <span class="subject-tag">
+                📚 {{ practical.subject.name }}
+            </span>
+
+            <span class="subject-tag">
+                🔖 {{ practical.subject.code }}
+            </span>
+
+        </div>
 
     </div>
 
-</div>
-```
-
 </section>
+
 
 <!-- ================= MAIN ================= -->
 
 <main class="container">
 
-```
-<!-- AIM -->
 
-<section class="content-card">
+    <!-- AIM -->
 
-    <div class="section-heading">
+    <section class="content-card">
 
-        <div class="section-icon">
-            🎯
-        </div>
-
-        <h2>
-            Aim
-        </h2>
-
-    </div>
-
-    <div class="section-content">
-        {{ practical.aim }}
-    </div>
-
-</section>
-
-
-<!-- REQUIREMENTS -->
-
-{% if practical.requirements %}
-
-<section class="content-card">
-
-    <div class="section-heading">
-
-        <div class="section-icon">
-            🧰
-        </div>
-
-        <h2>
-            Requirements
-        </h2>
-
-    </div>
-
-    <div class="requirements-box">
-        {{ practical.requirements }}
-    </div>
-
-</section>
-
-{% endif %}
-
-
-<!-- THEORY -->
-
-{% if practical.theory %}
-
-<section class="content-card">
-
-    <div class="section-heading">
-
-        <div class="section-icon">
-            📖
-        </div>
-
-        <h2>
-            Theory
-        </h2>
-
-    </div>
-
-    <div class="section-content">
-        {{ practical.theory }}
-    </div>
-
-</section>
-
-{% endif %}
-
-
-<!-- PROCEDURE -->
-
-{% if practical.procedure %}
-
-<section class="content-card">
-
-    <div class="section-heading">
-
-        <div class="section-icon">
-            📝
-        </div>
-
-        <h2>
-            Procedure
-        </h2>
-
-    </div>
-
-    <div class="section-content">
-        {{ practical.procedure }}
-    </div>
-
-</section>
-
-{% endif %}
-
-
-<!-- CODE -->
-
-{% if practical.code %}
-
-<section class="content-card">
-
-    <div class="code-header">
-
-        <div class="code-title">
+        <div class="section-heading">
 
             <div class="section-icon">
-                💻
+                🎯
             </div>
 
             <h2>
-                Program / Code
+                Aim
             </h2>
 
         </div>
 
-        <div>
+        <div class="section-content">
+            {{ practical.aim }}
+        </div>
 
-            <span class="code-label">
-                Python / Programming
-            </span>
+    </section>
+
+
+    <!-- REQUIREMENTS -->
+
+    {% if practical.requirements %}
+
+    <section class="content-card">
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                🧰
+            </div>
+
+            <h2>
+                Requirements
+            </h2>
+
+        </div>
+
+        <div class="requirements-box">
+            {{ practical.requirements }}
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- THEORY -->
+
+    {% if practical.theory %}
+
+    <section class="content-card">
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                📖
+            </div>
+
+            <h2>
+                Theory
+            </h2>
+
+        </div>
+
+        <div class="section-content">
+            {{ practical.theory }}
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- PROCEDURE -->
+
+    {% if practical.procedure %}
+
+    <section class="content-card">
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                📝
+            </div>
+
+            <h2>
+                Procedure
+            </h2>
+
+        </div>
+
+        <div class="section-content">
+            {{ practical.procedure }}
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- CODE -->
+
+    {% if practical.code %}
+
+    <section class="content-card">
+
+        <div class="code-header">
+
+            <div class="code-title">
+
+                <div class="section-icon">
+                    💻
+                </div>
+
+                <h2>
+                    Program / Code
+                </h2>
+
+            </div>
+
+            <div>
+
+                <span class="code-label">
+                    Python / Programming
+                </span>
+
+                <button
+                    class="copy-btn"
+                    onclick="copyCode()"
+                >
+                    📋 Copy Code
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            class="code-box"
+            id="codeContent"
+        >{{ practical.code }}</div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- OUTPUT -->
+
+    <section class="content-card">
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                🖥️
+            </div>
+
+            <h2>
+                Output
+            </h2>
+
+        </div>
+
+        <div class="output-box">
+
+            {% if practical.output_image %}
+
+                <img
+                    src="{{ practical.output_image.url }}"
+                    alt="Output of {{ practical.title }}"
+                >
+
+                <p class="output-caption">
+                    Practical Output
+                </p>
+
+            {% else %}
+
+                <div class="no-output">
+                    📷 Output image will be available here.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- VIVA -->
+
+    {% if practical.viva_questions %}
+
+    <section class="content-card">
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+                🎤
+            </div>
+
+            <h2>
+                Viva Questions
+            </h2>
+
+        </div>
+
+        <div class="viva-box">
+            {{ practical.viva_questions }}
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================= AI ASSISTANT ================= -->
+
+    <section class="ai-card">
+
+        <div class="ai-header">
+
+            <div class="ai-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h2>
+                    AI Practical Assistant
+                </h2>
+
+                <p>
+                    Ask questions about this practical, theory, code or viva.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ai-quick-questions">
 
             <button
-                class="copy-btn"
-                onclick="copyCode()"
+                type="button"
+                class="quick-btn"
+                onclick="askQuickQuestion('Explain this practical in simple words.')"
             >
-                📋 Copy Code
+                📘 Explain Practical
+            </button>
+
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="askQuickQuestion('Explain the theory of this practical in simple words.')"
+            >
+                📖 Explain Theory
+            </button>
+
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="askQuickQuestion('Explain the code step by step.')"
+            >
+                💻 Explain Code
+            </button>
+
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="askQuickQuestion('Give me important viva questions and their answers for this practical.')"
+            >
+                🎤 Viva Questions
             </button>
 
         </div>
 
-    </div>
 
-    <div
-        class="code-box"
-        id="codeContent"
-    >{{ practical.code }}</div>
+        <div class="ai-input-area">
 
-</section>
-
-{% endif %}
+            <textarea
+                id="aiQuestion"
+                placeholder="Ask your question about this practical..."
+                rows="3"
+            ></textarea>
 
 
-<!-- OUTPUT -->
+            <div class="ai-actions">
 
-<section class="content-card">
+                <button
+                    type="button"
+                    class="ai-ask-btn"
+                    id="aiAskButton"
+                    onclick="askAI()"
+                >
+                    🤖 Ask AI
+                </button>
 
-    <div class="section-heading">
-
-        <div class="section-icon">
-            🖥️
-        </div>
-
-        <h2>
-            Output
-        </h2>
-
-    </div>
-
-    <div class="output-box">
-
-        {% if practical.output_image %}
-
-            <img
-                src="{{ practical.output_image.url }}"
-                alt="Output of {{ practical.title }}"
-            >
-
-            <p class="output-caption">
-                Practical Output
-            </p>
-
-        {% else %}
-
-            <div class="no-output">
-                📷 Output image will be available here.
             </div>
 
-        {% endif %}
-
-    </div>
-
-</section>
-
-
-<!-- VIVA -->
-
-{% if practical.viva_questions %}
-
-<section class="content-card">
-
-    <div class="section-heading">
-
-        <div class="section-icon">
-            🎤
         </div>
 
-        <h2>
-            Viva Questions
-        </h2>
+
+        <div
+            id="aiLoading"
+            class="ai-loading"
+        >
+            🤖 AI is thinking...
+        </div>
+
+
+        <div
+            id="aiAnswer"
+            class="ai-answer"
+        ></div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <div class="bottom-navigation">
+
+        <a
+            href="{% url 'subject_detail' practical.subject.id %}"
+            class="nav-button secondary-button"
+        >
+            ← All Practicals
+        </a>
+
+        <a
+            href="#"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+            class="nav-button primary-button"
+        >
+            ↑ Back to Top
+        </a>
 
     </div>
 
-    <div class="viva-box">
-        {{ practical.viva_questions }}
-    </div>
-
-</section>
-
-{% endif %}
-
-
-<!-- NAVIGATION -->
-
-<div class="bottom-navigation">
-
-    <a
-        href="{% url 'subject_detail' practical.subject.id %}"
-        class="nav-button secondary-button"
-    >
-        ← All Practicals
-    </a>
-
-    <a
-        href="#"
-        onclick="window.scrollTo({top: 0, behavior: 'smooth'); return false;"
-        class="nav-button primary-button"
-    >
-        ↑ Back to Top
-    </a>
-
-</div>
-```
 
 </main>
+
 
 <!-- ================= FOOTER ================= -->
 
 <footer>
 
-```
-<p>
-    © 2026 <strong>Lab Practical Portal</strong>
-    · Built with Django
-</p>
-```
+    <p>
+        © 2026 <strong>Lab Practical Portal</strong>
+        · Built with Django
+    </p>
 
 </footer>
+
 
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
+
+    /* ================= COPY CODE ================= */
+
     function copyCode() {
 
+        const codeElement =
+            document.getElementById("codeContent");
+
+        if (!codeElement) {
+            return;
+        }
+
         const code =
-            document.getElementById("codeContent").innerText;
+            codeElement.innerText;
 
-        navigator.clipboard.writeText(code);
+        navigator.clipboard.writeText(code)
+            .then(function () {
 
-        const button =
-            document.querySelector(".copy-btn");
+                const button =
+                    document.querySelector(".copy-btn");
 
-        button.innerText = "✓ Copied!";
+                button.innerText =
+                    "✓ Copied!";
 
-        setTimeout(function () {
+                setTimeout(function () {
 
-            button.innerText = "📋 Copy Code";
+                    button.innerText =
+                        "📋 Copy Code";
 
-        }, 1800);
+                }, 1800);
+
+            })
+            .catch(function () {
+
+                alert("Unable to copy code.");
+
+            });
+
+    }
+
+
+    /* ================= QUICK QUESTION ================= */
+
+    function askQuickQuestion(question) {
+
+        const questionBox =
+            document.getElementById("aiQuestion");
+
+        questionBox.value =
+            question;
+
+        askAI();
+
+    }
+
+
+    /* ================= AI REQUEST ================= */
+
+    function askAI() {
+
+        const questionBox =
+            document.getElementById("aiQuestion");
+
+        const askButton =
+            document.getElementById("aiAskButton");
+
+        const loading =
+            document.getElementById("aiLoading");
+
+        const answerBox =
+            document.getElementById("aiAnswer");
+
+
+        const question =
+            questionBox.value.trim();
+
+
+        if (!question) {
+
+            alert(
+                "Please enter your question."
+            );
+
+            questionBox.focus();
+
+            return;
+
+        }
+
+
+        askButton.disabled =
+            true;
+
+        loading.style.display =
+            "block";
+
+        answerBox.style.display =
+            "none";
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "practical_id",
+            "{{ practical.id }}"
+        );
+
+
+        formData.append(
+            "question",
+            question
+        );
+
+
+        fetch(
+            "{% url 'ask_ai' %}",
+            {
+                method: "POST",
+
+                body: formData,
+
+                headers: {
+                    "X-CSRFToken":
+                        getCookie("csrftoken")
+                }
+            }
+        )
+
+        .then(function (response) {
+
+            return response.json();
+
+        })
+
+        .then(function (data) {
+
+            loading.style.display =
+                "none";
+
+            askButton.disabled =
+                false;
+
+            answerBox.style.display =
+                "block";
+
+
+            if (data.answer) {
+
+                answerBox.innerText =
+                    data.answer;
+
+            }
+
+            else {
+
+                answerBox.innerText =
+                    data.error ||
+                    "Something went wrong.";
+
+            }
+
+        })
+
+        .catch(function (error) {
+
+            console.error(error);
+
+            loading.style.display =
+                "none";
+
+            askButton.disabled =
+                false;
+
+            answerBox.style.display =
+                "block";
+
+            answerBox.innerText =
+                "Unable to connect to AI Assistant. Please try again.";
+
+        });
+
+    }
+
+
+    /* ================= CSRF COOKIE ================= */
+
+    function getCookie(name) {
+
+        let cookieValue = null;
+
+
+        if (
+            document.cookie &&
+            document.cookie !== ""
+        ) {
+
+            const cookies =
+                document.cookie.split(";");
+
+
+            for (
+                let cookie of cookies
+            ) {
+
+                cookie =
+                    cookie.trim();
+
+
+                if (
+                    cookie.substring(
+                        0,
+                        name.length + 1
+                    ) ===
+                    (name + "=")
+                ) {
+
+                    cookieValue =
+                        decodeURIComponent(
+                            cookie.substring(
+                                name.length + 1
+                            )
+                        );
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        return cookieValue;
 
     }
 
 </script>
 
+
 </body>
 
 </html>
+```
