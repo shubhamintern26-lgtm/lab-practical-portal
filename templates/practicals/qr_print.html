@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -198,11 +199,10 @@
         </div>
 
         <div class="qr-box">
-            {% if subject.qr_code %}
-                <img src="{{ subject.qr_code.url }}" alt="QR Code">
-            {% else %}
-                <p>QR Code not available</p>
-            {% endif %}
+            <img
+                src="{{ subject.get_qr_code_data }}"
+                alt="QR Code for {{ subject.name }}"
+            >
         </div>
 
         <div class="instruction">
@@ -221,3 +221,4 @@
 
 </body>
 </html>
+```
