@@ -26,17 +26,22 @@ class SubjectAdmin(admin.ModelAdmin):
 
     def qr_preview(self, obj=None):
 
-        if obj and obj.qr_code:
+        if obj and obj.pk:
             return format_html(
                 '<img src="{}" width="120" height="120" '
-                'style="object-fit:contain;" />',
-                obj.qr_code.url,
+                'style="object-fit:contain;'
+                'border:1px solid #e2e8f0;'
+                'border-radius:8px;padding:5px;'
+                'background:white;" />',
+                obj.get_qr_code_data(),
             )
 
         return "QR not generated"
 
     def print_qr(self, obj):
+
         if obj and obj.pk:
+
             url = f"/subject/{obj.pk}/qr-print/"
 
             return format_html(
