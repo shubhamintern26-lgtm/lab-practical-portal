@@ -4,11 +4,14 @@ from django.core.files import File
 from django.conf import settings
 
 import qrcode
+import base64
 from io import BytesIO
 
 
 class Subject(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(
+        max_length=200
+    )
 
     code = models.CharField(
         max_length=50,
@@ -41,6 +44,54 @@ class Subject(models.Model):
             args=[self.id]
         )
 
+    def get_qr_code_data(self):
+        """
+        Generate QR code dynamically.
+        Works on Render without persistent media storage.
+        """
+
+        site_url = getattr(
+            settings,
+            "SITE_URL",
+            "http://127.0.0.1:8000"
+        ).rstrip("/")
+
+        subject_url = (
+            f"{site_url}"
+            f"{self.get_absolute_url()}"
+        )
+
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_H,
+            box_size=10,
+            border=4
+        )
+
+        qr.add_data(subject_url)
+        qr.make(fit=True)
+
+        qr_image = qr.make_image(
+            fill_color="black",
+            back_color="white"
+        )
+
+        buffer = BytesIO()
+
+        qr_image.save(
+            buffer,
+            format="PNG"
+        )
+
+        encoded = base64.b64encode(
+            buffer.getvalue()
+        ).decode()
+
+        return (
+            "data:image/png;base64,"
+            f"{encoded}"
+        )
+
     def save(self, *args, **kwargs):
 
         # First save subject so it gets an ID
@@ -53,8 +104,8 @@ class Subject(models.Model):
         site_url = getattr(
             settings,
             "SITE_URL",
-            "http://10.74.246.175:8000"
-        )
+            "http://127.0.0.1:8000"
+        ).rstrip("/")
 
         subject_url = (
             f"{site_url}"
@@ -95,7 +146,6 @@ class Subject(models.Model):
 
         filename = f"{self.code}_QR.png"
 
-        # Delete old QR before creating new one
         if self.qr_code:
             self.qr_code.delete(
                 save=False
@@ -107,7 +157,6 @@ class Subject(models.Model):
             save=False
         )
 
-        # Save QR field only
         super().save(
             update_fields=["qr_code"]
         )
