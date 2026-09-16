@@ -1,224 +1,1173 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Print QR - {{ subject.name }}</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Print QR - {{ subject.name }}
+    </title>
+
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f1f5f9;
-            color: #0f172a;
+
+        :root {
+
+            --navy: #081426;
+            --navy-2: #102b50;
+
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+            --sky: #0ea5e9;
+
+            --text: #172033;
+            --muted: #667085;
+
+            --border: #dfe7f1;
+            --soft: #f5f8fc;
+
+            --white: #ffffff;
         }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                #eef3f9;
+
+            color: var(--text);
+        }
+
+
+        /* =====================================================
+           PRINT BUTTON
+        ===================================================== */
+
+        .print-button {
+
+            position: fixed;
+
+            top: 20px;
+            right: 20px;
+
+            z-index: 100;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 18px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    var(--blue-dark)
+                );
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,99,235,0.25);
+
+            transition: 0.2s ease;
+        }
+
+
+        .print-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(37,99,235,0.30);
+        }
+
+
+        /* =====================================================
+           A4 PAGE
+        ===================================================== */
 
         .page {
+
+            position: relative;
+
             width: 210mm;
+
             min-height: 297mm;
-            margin: 20px auto;
+
+            margin: 25px auto;
+
+            padding:
+                20mm 22mm;
+
             background: white;
-            padding: 25mm;
-            text-align: center;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 45px
+                rgba(15,23,42,0.13);
         }
 
-        .college {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 8px;
+
+        /* =====================================================
+           TOP BRAND BAR
+        ===================================================== */
+
+        .top-bar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding-bottom: 18px;
+
+            border-bottom:
+                1px solid var(--border);
         }
 
-        .portal {
-            font-size: 16px;
-            color: #2563eb;
-            font-weight: 600;
-            margin-bottom: 35px;
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
         }
 
-        .line {
-            width: 80px;
-            height: 4px;
-            background: #2563eb;
-            margin: 0 auto 35px;
-            border-radius: 10px;
+
+        .brand-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #dbeafe
+                );
+
+            border: 1px solid #dbeafe;
+
+            font-size: 21px;
         }
 
-        .scan-title {
-            font-size: 30px;
-            font-weight: 800;
-            margin-bottom: 15px;
+
+        .brand-text strong {
+
+            display: block;
+
+            color: var(--navy);
+
+            font-size: 15px;
+
+            font-weight: 850;
         }
 
-        .subject {
-            font-size: 25px;
+
+        .brand-text span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
             font-weight: 700;
-            margin-bottom: 8px;
+
+            letter-spacing: 0.7px;
         }
 
-        .code {
-            font-size: 17px;
-            color: #64748b;
-            margin-bottom: 30px;
+
+        .poster-label {
+
+            padding: 6px 10px;
+
+            border-radius: 999px;
+
+            background: #eff6ff;
+
+            border: 1px solid #dbeafe;
+
+            color: var(--blue);
+
+            font-size: 9px;
+
+            font-weight: 850;
+
+            letter-spacing: 0.5px;
         }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+
+            text-align: center;
+
+            padding-top: 38px;
+        }
+
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: var(--blue);
+
+            font-size: 10px;
+
+            font-weight: 850;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 11px;
+        }
+
+
+        .eyebrow::before,
+        .eyebrow::after {
+
+            content: "";
+
+            width: 22px;
+            height: 1px;
+
+            background: #bfdbfe;
+        }
+
+
+        .header h1 {
+
+            margin: 0;
+
+            color: var(--navy);
+
+            font-size: 30px;
+
+            line-height: 1.15;
+
+            letter-spacing: -0.7px;
+        }
+
+
+        .header-description {
+
+            max-width: 530px;
+
+            margin:
+                11px auto 0;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           SUBJECT CARD
+        ===================================================== */
+
+        .subject-card {
+
+            max-width: 620px;
+
+            margin:
+                27px auto 30px;
+
+            padding:
+                16px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fbfdff,
+                    #f5f8fc
+                );
+        }
+
+
+        .subject-info {
+
+            text-align: left;
+
+            min-width: 0;
+        }
+
+
+        .subject-label {
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.7px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 4px;
+        }
+
+
+        .subject-name {
+
+            color: var(--navy);
+
+            font-size: 18px;
+
+            font-weight: 850;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        .code-badge {
+
+            flex-shrink: 0;
+
+            padding: 8px 11px;
+
+            border-radius: 9px;
+
+            background: #eff6ff;
+
+            border:
+                1px solid #dbeafe;
+
+            color: var(--blue);
+
+            font-size: 10px;
+
+            font-weight: 850;
+        }
+
+
+        /* =====================================================
+           QR AREA
+        ===================================================== */
+
+        .qr-section {
+
+            text-align: center;
+        }
+
 
         .qr-box {
+
             display: inline-flex;
+
             align-items: center;
+
             justify-content: center;
-            padding: 18px;
-            border: 3px solid #2563eb;
-            border-radius: 18px;
-            margin-bottom: 30px;
+
+            padding: 17px;
+
+            background: white;
+
+            border:
+                2px solid #dbeafe;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(15,23,42,0.08);
+
+            position: relative;
         }
 
+
+        .qr-box::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -7px;
+
+            border:
+                1px solid #eff6ff;
+
+            border-radius: 25px;
+
+            pointer-events: none;
+        }
+
+
         .qr-box img {
-            width: 240px;
-            height: 240px;
+
+            display: block;
+
+            width: 235px;
+
+            height: 235px;
+
             object-fit: contain;
         }
 
-        .instruction {
+
+        .scan-title {
+
+            margin-top: 23px;
+
+            color: var(--navy);
+
             font-size: 19px;
-            font-weight: 600;
-            margin: 10px auto;
-            max-width: 500px;
+
+            font-weight: 850;
         }
 
-        .small {
-            color: #64748b;
-            font-size: 15px;
-            margin-top: 10px;
+
+        .scan-description {
+
+            max-width: 470px;
+
+            margin:
+                7px auto 0;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.6;
         }
 
-        .footer {
-            margin-top: 55px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
+
+        /* =====================================================
+           STEPS
+        ===================================================== */
+
+        .steps {
+
+            max-width: 620px;
+
+            margin:
+                34px auto 0;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .step {
+
+            padding: 13px 10px;
+
+            text-align: center;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 12px;
+
+            background:
+                #fbfcfe;
+        }
+
+
+        .step-number {
+
+            width: 25px;
+            height: 25px;
+
+            margin: 0 auto 7px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #eff6ff;
+
+            color: var(--blue);
+
+            font-size: 10px;
+
+            font-weight: 850;
+        }
+
+
+        .step strong {
+
+            display: block;
+
+            color: var(--navy);
+
+            font-size: 10px;
+        }
+
+
+        .step span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           ACCESS NOTE
+        ===================================================== */
+
+        .access-note {
+
+            max-width: 620px;
+
+            margin:
+                28px auto 0;
+
+            padding:
+                13px 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            border-radius: 11px;
+
+            background:
+                #f0fdf4;
+
+            border:
+                1px solid #bbf7d0;
+
+            color: #166534;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            text-align: left;
+        }
+
+
+        .access-icon {
+
+            flex-shrink: 0;
+
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: white;
+
+            border:
+                1px solid #bbf7d0;
+
             font-size: 13px;
         }
 
-        .print-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 22px;
-            border: none;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            position: absolute;
+
+            left: 22mm;
+
+            right: 22mm;
+
+            bottom: 17mm;
+
+            padding-top: 13px;
+
+            border-top:
+                1px solid var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            color: #94a3b8;
+
+            font-size: 9px;
         }
 
-        .print-button:hover {
-            background: #1d4ed8;
+
+        .footer strong {
+
+            color: #64748b;
+
+            font-weight: 800;
         }
 
-        @media print {
-            body {
-                background: white;
-            }
 
-            .page {
-                margin: 0;
-                box-shadow: none;
-                width: 210mm;
-                min-height: 297mm;
-            }
-
-            .print-button {
-                display: none;
-            }
-        }
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
         @media (max-width: 700px) {
+
+            body {
+
+                background:
+                    #f5f8fc;
+
+                padding: 0;
+            }
+
+
             .page {
+
                 width: 100%;
+
                 min-height: 100vh;
+
                 margin: 0;
-                padding: 30px 20px;
+
+                padding:
+                    25px 20px 80px;
+
+                box-shadow: none;
             }
 
-            .college {
-                font-size: 20px;
+
+            .print-button {
+
+                top: 12px;
+
+                right: 12px;
+
+                padding:
+                    10px 13px;
+
+                font-size: 11px;
             }
 
-            .scan-title {
+
+            .top-bar {
+
+                padding-top: 5px;
+            }
+
+
+            .brand-text strong {
+
+                font-size: 13px;
+            }
+
+
+            .poster-label {
+
+                display: none;
+            }
+
+
+            .header {
+
+                padding-top: 35px;
+            }
+
+
+            .header h1 {
+
                 font-size: 25px;
             }
 
-            .subject {
-                font-size: 21px;
+
+            .header-description {
+
+                font-size: 11px;
             }
 
-            .qr-box img {
-                width: 200px;
-                height: 200px;
+
+            .subject-card {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 10px;
+
+                margin-top: 23px;
             }
+
+
+            .subject-name {
+
+                white-space: normal;
+
+                font-size: 17px;
+            }
+
+
+            .qr-box {
+
+                padding: 14px;
+
+                border-radius: 17px;
+            }
+
+
+            .qr-box img {
+
+                width: 205px;
+
+                height: 205px;
+            }
+
+
+            .scan-title {
+
+                font-size: 17px;
+            }
+
+
+            .steps {
+
+                grid-template-columns: 1fr;
+
+                gap: 8px;
+            }
+
+
+            .step {
+
+                display: flex;
+
+                align-items: center;
+
+                text-align: left;
+
+                gap: 9px;
+
+                padding: 10px;
+            }
+
+
+            .step-number {
+
+                margin: 0;
+
+                flex-shrink: 0;
+            }
+
+
+            .step span {
+
+                margin-top: 0;
+            }
+
+
+            .footer {
+
+                position: static;
+
+                margin-top: 35px;
+
+                padding-top: 13px;
+            }
+
         }
+
+
+        /* =====================================================
+           PRINT
+        ===================================================== */
+
+        @media print {
+
+            @page {
+
+                size: A4;
+
+                margin: 0;
+            }
+
+
+            body {
+
+                background: white;
+
+                margin: 0;
+            }
+
+
+            .page {
+
+                width: 210mm;
+
+                min-height: 297mm;
+
+                margin: 0;
+
+                padding:
+                    20mm 22mm;
+
+                box-shadow: none;
+            }
+
+
+            .print-button {
+
+                display: none;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <button class="print-button" onclick="window.print()">
+
+    <!-- =================================================
+         PRINT BUTTON
+    ================================================== -->
+
+    <button
+        class="print-button"
+        onclick="window.print()"
+    >
         🖨 Print QR
     </button>
 
+
+
+    <!-- =================================================
+         A4 POSTER
+    ================================================== -->
+
     <div class="page">
 
-        <div class="college">
-            NRI Group of Institute
+
+        <!-- TOP BRAND -->
+
+        <div class="top-bar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🧪
+                </div>
+
+
+                <div class="brand-text">
+
+                    <strong>
+                        NRI Group of Institute
+                    </strong>
+
+                    <span>
+                        LAB PRACTICAL PORTAL
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="poster-label">
+                DIGITAL LAB ACCESS
+            </div>
+
         </div>
 
-        <div class="portal">
-            LAB PRACTICAL PORTAL
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="eyebrow">
+                QUICK ACCESS
+            </div>
+
+
+            <h1>
+                Scan to Access Practicals
+            </h1>
+
+
+            <p class="header-description">
+                Use your mobile phone to instantly access
+                all practical resources for this laboratory subject.
+            </p>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="scan-title">
-            SCAN TO ACCESS PRACTICALS
+
+        <!-- SUBJECT -->
+
+        <div class="subject-card">
+
+            <div class="subject-info">
+
+                <div class="subject-label">
+                    Laboratory Subject
+                </div>
+
+
+                <div class="subject-name">
+                    {{ subject.name }}
+                </div>
+
+            </div>
+
+
+            <div class="code-badge">
+                {{ subject.code }}
+            </div>
+
         </div>
 
-        <div class="subject">
-            {{ subject.name }}
+
+
+        <!-- QR -->
+
+        <div class="qr-section">
+
+
+            <div class="qr-box">
+
+                <img
+                    src="{{ subject.get_qr_code_data }}"
+                    alt="QR Code for {{ subject.name }}"
+                >
+
+            </div>
+
+
+            <div class="scan-title">
+                📱 Scan this QR Code
+            </div>
+
+
+            <p class="scan-description">
+                Access practicals, procedures, programs,
+                outputs and viva questions from your mobile device.
+            </p>
+
         </div>
 
-        <div class="code">
-            Subject Code: {{ subject.code }}
+
+
+        <!-- STEPS -->
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div>
+
+                    <strong>
+                        Open Camera
+                    </strong>
+
+                    <span>
+                        Use your phone camera
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div>
+
+                    <strong>
+                        Scan QR
+                    </strong>
+
+                    <span>
+                        Point camera at the code
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div>
+
+                    <strong>
+                        Start Practical
+                    </strong>
+
+                    <span>
+                        Choose your practical
+                    </span>
+
+                </div>
+
+            </div>
+
+
         </div>
 
-        <div class="qr-box">
-            <img
-                src="{{ subject.get_qr_code_data }}"
-                alt="QR Code for {{ subject.name }}"
-            >
+
+
+        <!-- ACCESS NOTE -->
+
+        <div class="access-note">
+
+            <div class="access-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <strong>
+                    One QR Code • Complete Subject Access
+                </strong>
+
+                <br>
+
+                This QR code provides access to all practicals
+                available for this subject.
+
+            </div>
+
         </div>
 
-        <div class="instruction">
-            📱 Scan this QR Code using your mobile phone
-        </div>
 
-        <div class="small">
-            Access all practicals, procedures, programs and viva questions.
-        </div>
+
+        <!-- FOOTER -->
 
         <div class="footer">
-            Lab Practical Portal • QR Based Practical Access System
+
+            <div>
+                <strong>Lab Practical Portal</strong>
+                • QR Based Practical Access System
+            </div>
+
+
+            <div>
+                Academic Laboratory Resource
+            </div>
+
         </div>
+
 
     </div>
 
+
 </body>
+
 </html>
-```

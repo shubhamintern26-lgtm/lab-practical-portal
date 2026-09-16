@@ -1,16 +1,27 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lab Practical Portal | Digital Laboratory</title>
+    <title>Lab Practical Portal</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+        :root {
+            --navy: #081426;
+            --navy-2: #0d1d34;
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+            --sky: #0ea5e9;
+            --text: #172033;
+            --muted: #667085;
+            --soft: #f5f8fc;
+            --border: #e4eaf2;
+            --white: #ffffff;
+            --green: #16a34a;
+        }
 
         * {
             margin: 0;
@@ -23,1220 +34,936 @@
         }
 
         body {
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
-            background: #f4f7fb;
-
-            color: #172033;
-
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background: #fff;
             line-height: 1.6;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-        /* ==============================
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* =========================
            NAVBAR
-        ============================== */
+        ========================= */
 
         .navbar {
-
-            height: 72px;
-
-            background: rgba(255,255,255,0.96);
-
-            backdrop-filter: blur(12px);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding: 0 6%;
-
-            border-bottom: 1px solid #e7ebf2;
-
             position: sticky;
-
             top: 0;
-
-            z-index: 1000;
+            z-index: 999;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(228,234,242,.8);
         }
 
-
-        .logo {
-
-            text-decoration: none;
-
-            color: #1d4ed8;
-
-            font-size: 19px;
-
-            font-weight: 800;
-
+        .nav {
+            height: 76px;
             display: flex;
-
             align-items: center;
-
-            gap: 8px;
+            justify-content: space-between;
         }
 
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: linear-gradient(135deg,#2563eb,#0ea5e9);
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 8px 20px rgba(37,99,235,.23);
+        }
+
+        .brand-name {
+            font-family: "Plus Jakarta Sans",sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -.4px;
+        }
 
         .nav-links {
-
             display: flex;
-
             align-items: center;
-
-            gap: 8px;
+            gap: 28px;
         }
-
 
         .nav-links a {
-
-            text-decoration: none;
-
-            color: #475569;
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            padding: 9px 13px;
-
-            border-radius: 8px;
-
-            transition: 0.2s;
+            font-size: 13px;
+            font-weight: 600;
+            color: #526074;
+            transition: .2s ease;
         }
-
 
         .nav-links a:hover {
-
-            background: #eff6ff;
-
-            color: #2563eb;
+            color: var(--blue);
         }
 
-
-        .admin-btn {
-
-            background: #2563eb !important;
-
-            color: white !important;
-
-            padding: 10px 15px !important;
+        .admin {
+            padding: 10px 17px;
+            border-radius: 9px;
+            color: #fff !important;
+            background: var(--navy);
         }
 
-
-        .admin-btn:hover {
-
-            background: #1d4ed8 !important;
+        .admin:hover {
+            background: #142944;
         }
 
-
-        /* ==============================
+        /* =========================
            HERO
-        ============================== */
+        ========================= */
 
         .hero {
-
+            position: relative;
+            overflow: hidden;
             background:
+                radial-gradient(circle at 85% 20%,rgba(37,99,235,.09),transparent 25%),
+                linear-gradient(180deg,#f8fbff 0%,#fff 100%);
+        }
 
-                radial-gradient(
-                    circle at 85% 20%,
-                    rgba(59,130,246,0.16),
-                    transparent 32%
-                ),
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            right: -180px;
+            bottom: -230px;
+            border-radius: 50%;
+            border: 1px solid rgba(37,99,235,.08);
+        }
 
-                linear-gradient(
-                    135deg,
-                    #f8fbff,
-                    #eef4ff
-                );
-
-            padding: 82px 6%;
-
-            min-height: 570px;
-
-            display: flex;
-
+        .hero-grid {
+            min-height: 590px;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
             align-items: center;
-
-            gap: 70px;
+            gap: 75px;
+            padding: 70px 0;
         }
 
-
-        .hero-content {
-
-            width: 58%;
-
-            max-width: 700px;
-        }
-
-
-        .badge {
-
+        .eyebrow {
             display: inline-flex;
-
             align-items: center;
-
-            gap: 7px;
-
-            background: #dbeafe;
-
-            color: #2563eb;
-
-            padding: 8px 14px;
-
-            border-radius: 30px;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            margin-bottom: 21px;
-        }
-
-
-        .hero h1 {
-
-            font-size: 52px;
-
-            line-height: 1.13;
-
-            letter-spacing: -1px;
-
-            color: #111827;
-
-            margin-bottom: 22px;
-        }
-
-
-        .hero h1 span {
-
-            color: #2563eb;
-        }
-
-
-        .hero-description {
-
-            color: #64748b;
-
-            font-size: 17px;
-
-            line-height: 1.85;
-
-            max-width: 620px;
-
-            margin-bottom: 30px;
-        }
-
-
-        .hero-actions {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            flex-wrap: wrap;
-        }
-
-
-        .primary-btn {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-decoration: none;
-
-            background: #2563eb;
-
-            color: white;
-
-            padding: 13px 19px;
-
-            border-radius: 10px;
-
-            font-size: 14px;
-
-            font-weight: 800;
-
-            transition: 0.2s;
-        }
-
-
-        .primary-btn:hover {
-
-            background: #1d4ed8;
-
-            transform: translateY(-2px);
-        }
-
-
-        .secondary-btn {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-decoration: none;
-
-            background: white;
-
-            color: #334155;
-
-            border: 1px solid #d7dde6;
-
-            padding: 13px 19px;
-
-            border-radius: 10px;
-
-            font-size: 14px;
-
-            font-weight: 800;
-
-            transition: 0.2s;
-        }
-
-
-        .secondary-btn:hover {
-
-            border-color: #2563eb;
-
-            color: #2563eb;
-
-            transform: translateY(-2px);
-        }
-
-
-        /* ==============================
-           QR PANEL
-        ============================== */
-
-        .qr-panel {
-
-            width: 350px;
-
-            background: white;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 20px;
-
-            padding: 30px;
-
-            text-align: center;
-
-            box-shadow:
-                0 20px 50px rgba(15,23,42,0.10);
-        }
-
-
-        .qr-top {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 7px;
-
-            background: #f1f5f9;
-
-            color: #475569;
-
-            padding: 7px 11px;
-
-            border-radius: 8px;
-
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid #dbeafe;
+            background: #eff6ff;
+            color: #1d4ed8;
             font-size: 11px;
-
-            font-weight: 800;
-
+            font-weight: 700;
             margin-bottom: 20px;
         }
 
-
-        .qr-visual {
-
-            width: 205px;
-
-            height: 205px;
-
-            margin: auto;
-
-            padding: 12px;
-
-            background: white;
-
-            border: 1px solid #e2e8f0;
-
-            border-radius: 14px;
-
-            box-shadow:
-                0 8px 20px rgba(15,23,42,0.06);
-
-            position: relative;
+        .eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
         }
 
-
-        .qr-pattern {
-
-            width: 100%;
-
-            height: 100%;
-
-            background:
-
-                linear-gradient(90deg,
-                    #111827 10px,
-                    transparent 10px
-                ) 0 0 / 28px 28px,
-
-                linear-gradient(
-                    #111827 10px,
-                    transparent 10px
-                ) 0 0 / 28px 28px;
-
-            opacity: 0.9;
-        }
-
-
-        .qr-corner {
-
-            position: absolute;
-
-            width: 45px;
-
-            height: 45px;
-
-            border: 8px solid #111827;
-
-            background: white;
-        }
-
-
-        .corner-one {
-
-            top: 18px;
-
-            left: 18px;
-        }
-
-
-        .corner-two {
-
-            top: 18px;
-
-            right: 18px;
-        }
-
-
-        .corner-three {
-
-            bottom: 18px;
-
-            left: 18px;
-        }
-
-
-        .qr-panel h3 {
-
-            margin-top: 22px;
-
-            color: #111827;
-
-            font-size: 20px;
-        }
-
-
-        .qr-panel p {
-
-            color: #64748b;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            margin-top: 7px;
-        }
-
-
-        /* ==============================
-           STATS
-        ============================== */
-
-        .stats {
-
-            width: 88%;
-
-            max-width: 1120px;
-
-            margin: -35px auto 0;
-
-            position: relative;
-
-            z-index: 2;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 16px;
-        }
-
-
-        .stat-card {
-
-            background: white;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 14px;
-
-            padding: 22px;
-
-            text-align: center;
-
-            box-shadow:
-                0 10px 30px rgba(15,23,42,0.06);
-        }
-
-
-        .stat-number {
-
-            color: #2563eb;
-
-            font-size: 26px;
-
-            font-weight: 800;
-        }
-
-
-        .stat-label {
-
-            color: #64748b;
-
-            font-size: 12px;
-
-            font-weight: 600;
-
-            margin-top: 3px;
-        }
-
-
-        /* ==============================
-           SUBJECTS
-        ============================== */
-
-        .subjects {
-
-            padding: 90px 6% 75px;
-
-            background: #f4f7fb;
-        }
-
-
-        .section-header {
-
-            text-align: center;
-
+        .hero h1 {
             max-width: 650px;
-
-            margin: 0 auto 42px;
+            font-family: "Plus Jakarta Sans",sans-serif;
+            font-size: clamp(42px,5vw,66px);
+            line-height: 1.06;
+            letter-spacing: -3px;
+            color: var(--navy);
+            margin-bottom: 22px;
         }
 
-
-        .section-label {
-
-            color: #2563eb;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.8px;
-
-            margin-bottom: 8px;
+        .hero h1 span {
+            color: var(--blue);
         }
 
-
-        .section-header h2 {
-
-            color: #111827;
-
-            font-size: 32px;
-
-            margin-bottom: 8px;
+        .hero-text {
+            max-width: 590px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.85;
+            margin-bottom: 30px;
         }
 
-
-        .section-header p {
-
-            color: #64748b;
-
-            font-size: 14px;
-        }
-
-
-        .subject-grid {
-
-            max-width: 1120px;
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .subject-card {
-
-            background: white;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 16px;
-
-            padding: 24px;
-
-            min-height: 245px;
-
+        .actions {
             display: flex;
-
-            flex-direction: column;
-
-            box-shadow:
-                0 7px 24px rgba(15,23,42,0.045);
-
-            transition: 0.2s;
-        }
-
-
-        .subject-card:hover {
-
-            transform: translateY(-4px);
-
-            border-color: #bfdbfe;
-
-            box-shadow:
-                0 14px 35px rgba(15,23,42,0.08);
-        }
-
-
-        .subject-icon {
-
-            width: 46px;
-
-            height: 46px;
-
-            display: flex;
-
             align-items: center;
+            gap: 12px;
+        }
 
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-
-            background: #eff6ff;
-
-            border-radius: 12px;
-
-            font-size: 22px;
-
-            margin-bottom: 18px;
+            padding: 13px 19px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .25s ease;
         }
 
-
-        .subject-card h3 {
-
-            color: #111827;
-
-            font-size: 18px;
-
-            margin-bottom: 8px;
+        .btn-primary {
+            color: white;
+            background: var(--blue);
+            box-shadow: 0 10px 22px rgba(37,99,235,.22);
         }
 
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
 
-        .subject-code {
+        .btn-secondary {
+            border: 1px solid var(--border);
+            background: white;
+            color: #344054;
+        }
 
-            display: inline-block;
+        .btn-secondary:hover {
+            border-color: #b9cdf0;
+            color: var(--blue);
+            transform: translateY(-2px);
+        }
 
-            width: fit-content;
+        /* =========================
+           HERO DASHBOARD VISUAL
+        ========================= */
 
-            background: #eff6ff;
+        .hero-visual {
+            position: relative;
+            height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-            color: #2563eb;
+        .dashboard-card {
+            position: relative;
+            width: 375px;
+            background: white;
+            border: 1px solid #e1e8f0;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 30px 70px rgba(15,23,42,.12);
+        }
 
-            padding: 5px 9px;
+        .dashboard-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
 
-            border-radius: 6px;
-
+        .dashboard-title {
             font-size: 11px;
-
-            font-weight: 800;
-
-            margin-bottom: 12px;
+            color: #667085;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-
-        .subject-card p {
-
-            color: #64748b;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            flex: 1;
-
-            margin-bottom: 15px;
+        .online {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--green);
+            font-size: 10px;
+            font-weight: 700;
         }
 
-
-        .subject-link {
-
-            text-decoration: none;
-
-            color: #2563eb;
-
-            font-size: 13px;
-
-            font-weight: 800;
+        .online-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
         }
 
-
-        .subject-link:hover {
-
-            color: #1d4ed8;
-        }
-
-
-        .empty-subject {
-
-            grid-column: 1 / -1;
-
-            background: white;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 16px;
-
-            text-align: center;
-
-            padding: 60px 20px;
-        }
-
-
-        .empty-subject h3 {
-
-            color: #111827;
-
-            margin-bottom: 8px;
-        }
-
-
-        .empty-subject p {
-
-            color: #64748b;
-
-            font-size: 14px;
-        }
-
-
-        /* ==============================
-           HOW IT WORKS
-        ============================== */
-
-        .how-section {
-
-            background: white;
-
-            padding: 80px 6%;
-        }
-
-
-        .steps {
-
-            max-width: 1050px;
-
-            margin: 45px auto 0;
-
+        .qr-area {
+            height: 205px;
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 22px;
+            place-items: center;
+            border-radius: 15px;
+            background: #f8fafc;
+            border: 1px solid #e7edf4;
         }
 
+        .qr {
+            width: 140px;
+            height: 140px;
+            position: relative;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    #101828 0 5px,
+                    transparent 5px 10px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    #101828 0 5px,
+                    transparent 5px 10px
+                );
+        }
 
-        .step {
+        .qr:before,
+        .qr:after {
+            content: "";
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: white;
+            border: 8px solid #101828;
+        }
 
+        .qr:before {
+            top: 0;
+            left: 0;
+        }
+
+        .qr:after {
+            right: 0;
+            bottom: 0;
+        }
+
+        .dashboard-footer {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 9px;
+            margin-top: 14px;
+        }
+
+        .dashboard-stat {
+            padding: 12px 5px;
             text-align: center;
-
-            padding: 25px;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 16px;
-
+            border-radius: 10px;
             background: #f8fafc;
         }
 
-
-        .step-number {
-
-            width: 44px;
-
-            height: 44px;
-
-            margin: auto auto 15px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background: #2563eb;
-
-            color: white;
-
-            font-weight: 800;
-
-            font-size: 14px;
+        .dashboard-stat strong {
+            display: block;
+            color: var(--navy);
+            font-size: 15px;
         }
 
-
-        .step h3 {
-
-            color: #111827;
-
-            font-size: 17px;
-
-            margin-bottom: 8px;
+        .dashboard-stat span {
+            font-size: 9px;
+            color: #98a2b3;
+            font-weight: 700;
         }
 
-
-        .step p {
-
-            color: #64748b;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-        }
-
-
-        /* ==============================
-           FEATURES
-        ============================== */
-
-        .features {
-
-            background: #f4f7fb;
-
-            padding: 80px 6%;
-        }
-
-
-        .feature-grid {
-
-            max-width: 1050px;
-
-            margin: 45px auto 0;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .feature-card {
-
+        .floating {
+            position: absolute;
             background: white;
+            border: 1px solid #e4eaf2;
+            box-shadow: 0 15px 35px rgba(15,23,42,.10);
+            border-radius: 11px;
+            padding: 12px 15px;
+            font-size: 11px;
+            font-weight: 700;
+        }
 
-            border: 1px solid #e5eaf1;
+        .floating.one {
+            left: 0;
+            top: 75px;
+        }
 
-            border-radius: 16px;
+        .floating.two {
+            right: -5px;
+            bottom: 65px;
+        }
 
-            padding: 27px;
+        .floating strong {
+            color: var(--blue);
+        }
 
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            position: relative;
+            z-index: 5;
+            margin-top: -35px;
+        }
+
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 18px 45px rgba(15,23,42,.08);
+        }
+
+        .stat {
+            padding: 23px 15px;
             text-align: center;
-
-            transition: 0.2s;
+            border-right: 1px solid #edf1f5;
         }
 
-
-        .feature-card:hover {
-
-            transform: translateY(-4px);
-
-            box-shadow:
-                0 12px 30px rgba(15,23,42,0.07);
+        .stat:last-child {
+            border-right: none;
         }
 
+        .stat strong {
+            display: block;
+            font-family: "Plus Jakarta Sans",sans-serif;
+            font-size: 24px;
+            color: var(--navy);
+        }
 
-        .feature-icon {
+        .stat span {
+            font-size: 11px;
+            color: #667085;
+            font-weight: 600;
+        }
 
-            font-size: 32px;
+        /* =========================
+           GENERAL SECTION
+        ========================= */
 
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-head {
+            max-width: 650px;
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 1.7px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: "Plus Jakarta Sans",sans-serif;
+            font-size: clamp(30px,4vw,42px);
+            line-height: 1.15;
+            letter-spacing: -1.6px;
+            color: var(--navy);
             margin-bottom: 13px;
         }
 
+        .section-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
 
-        .feature-card h3 {
+        /* =========================
+           SUBJECTS
+        ========================= */
 
-            color: #111827;
+        .subjects {
+            background: var(--soft);
+        }
 
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+        }
+
+        .subject-card {
+            position: relative;
+            padding: 25px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: .3s ease;
+            overflow: hidden;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-6px);
+            border-color: #bfd5f5;
+            box-shadow: 0 20px 45px rgba(15,23,42,.08);
+        }
+
+        .subject-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .subject-number {
+            color: #98a2b3;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .code {
+            padding: 5px 8px;
+            border-radius: 6px;
+            background: #eff6ff;
+            color: var(--blue-dark);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .subject-card h3 {
+            font-family: "Plus Jakarta Sans",sans-serif;
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 9px;
+        }
+
+        .subject-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+            min-height: 62px;
+            margin-bottom: 18px;
+        }
+
+        .subject-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .arrow {
+            transition: .2s;
+        }
+
+        .subject-link:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .empty {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 55px;
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 15px;
+            color: var(--muted);
+        }
+
+        /* =========================
+           WORKFLOW
+        ========================= */
+
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .workflow-card {
+            position: relative;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: white;
+        }
+
+        .step {
+            position: absolute;
+            top: 20px;
+            right: 22px;
+            color: #98a2b3;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .workflow-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: var(--blue);
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .workflow-card h3 {
+            font-family: "Plus Jakarta Sans",sans-serif;
             font-size: 17px;
-
             margin-bottom: 8px;
         }
 
-
-        .feature-card p {
-
-            color: #64748b;
-
-            font-size: 13px;
-
-            line-height: 1.7;
+        .workflow-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.75;
         }
 
+        /* =========================
+           FEATURES
+        ========================= */
 
-        /* ==============================
+        .features {
+            background: var(--navy);
+        }
+
+        .features .section-title {
+            color: white;
+        }
+
+        .features .section-desc {
+            color: #9aabc0;
+        }
+
+        .features .section-label {
+            color: #60a5fa;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 15px;
+            background: rgba(255,255,255,.045);
+            transition: .25s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96,165,250,.35);
+            background: rgba(255,255,255,.065);
+        }
+
+        .feature-icon {
+            font-size: 23px;
+            margin-bottom: 19px;
+        }
+
+        .feature h3 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #9aabc0;
+            font-size: 12px;
+            line-height: 1.75;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            padding: 90px 0;
+        }
+
+        .cta-box {
+            position: relative;
+            overflow: hidden;
+            padding: 58px;
+            border-radius: 20px;
+            background: linear-gradient(135deg,#0b1d34,#102f50);
+        }
+
+        .cta-box:after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -90px;
+            top: -100px;
+            border-radius: 50%;
+            background: rgba(37,99,235,.25);
+            filter: blur(25px);
+        }
+
+        .cta-box h2 {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+            font-family: "Plus Jakarta Sans",sans-serif;
+            font-size: 38px;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            position: relative;
+            z-index: 2;
+            max-width: 560px;
+            color: #aebfd3;
+            font-size: 13px;
+            margin-bottom: 23px;
+        }
+
+        .cta-btn {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            padding: 12px 18px;
+            border-radius: 8px;
+            background: white;
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* =========================
            FOOTER
-        ============================== */
+        ========================= */
 
         footer {
-
-            background: #0f172a;
-
-            color: white;
-
-            text-align: center;
-
-            padding: 30px 20px;
+            padding: 28px 0;
+            background: #06101c;
         }
 
-
-        footer strong {
-
-            color: white;
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-
-        footer p {
-
-            color: #94a3b8;
-
-            font-size: 13px;
+        .footer-brand {
+            color: #d8e3ef;
+            font-size: 12px;
+            font-weight: 700;
         }
 
-
-        /* ==============================
-           TABLET
-        ============================== */
-
-        @media (max-width: 1000px) {
-
-            .hero {
-
-                padding: 70px 5%;
-
-            }
-
-            .hero-content {
-
-                width: 55%;
-            }
-
-            .hero h1 {
-
-                font-size: 43px;
-            }
-
-            .subject-grid,
-
-            .feature-grid,
-
-            .steps {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
+        .footer-text {
+            color: #73859b;
+            font-size: 11px;
         }
 
+        /* =========================
+           RESPONSIVE
+        ========================= */
 
-        /* ==============================
-           MOBILE
-        ============================== */
+        @media (max-width: 950px) {
 
-        @media (max-width: 760px) {
-
-            .navbar {
-
-                height: 64px;
-
-                padding: 0 5%;
-            }
-
-
-            .logo {
-
-                font-size: 15px;
-            }
-
-
-            .nav-links a:not(.admin-btn) {
-
-                display: none;
-            }
-
-
-            .admin-btn {
-
-                font-size: 12px !important;
-
-                padding: 8px 11px !important;
-            }
-
-
-            .hero {
-
-                flex-direction: column;
-
+            .hero-grid {
+                grid-template-columns: 1fr;
                 text-align: center;
-
-                padding: 55px 5% 70px;
-
-                gap: 35px;
             }
 
-
-            .hero-content {
-
-                width: 100%;
+            .hero-text {
+                margin-left: auto;
+                margin-right: auto;
             }
 
-
-            .hero h1 {
-
-                font-size: 34px;
-
-                letter-spacing: -0.5px;
-            }
-
-
-            .hero-description {
-
-                font-size: 14px;
-
-                line-height: 1.75;
-            }
-
-
-            .hero-actions {
-
+            .actions {
                 justify-content: center;
             }
 
+            .hero-visual {
+                margin-top: -20px;
+            }
 
-            .primary-btn,
+            .subject-grid,
+            .feature-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
 
-            .secondary-btn {
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+        }
 
-                padding: 12px 15px;
+        @media (max-width: 700px) {
 
+            .container {
+                width: calc(100% - 28px);
+            }
+
+            .nav {
+                height: 68px;
+            }
+
+            .nav-links a:not(.admin) {
+                display: none;
+            }
+
+            .brand-name {
+                font-size: 14px;
+            }
+
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .hero-grid {
+                padding: 60px 0 75px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+                letter-spacing: -2px;
+            }
+
+            .hero-text {
                 font-size: 13px;
             }
 
-
-            .qr-panel {
-
-                width: 100%;
-
-                max-width: 330px;
+            .hero-visual {
+                height: 370px;
             }
 
+            .dashboard-card {
+                width: min(350px,90vw);
+            }
+
+            .floating.one {
+                left: -5px;
+            }
+
+            .floating.two {
+                right: -5px;
+            }
 
             .stats {
-
-                width: 92%;
-
-                margin: -25px auto 0;
-
-                grid-template-columns: 1fr;
+                margin-top: -20px;
             }
 
-
-            .subjects {
-
-                padding: 70px 5%;
+            .stats-box {
+                grid-template-columns: repeat(2,1fr);
             }
 
-
-            .section-header h2 {
-
-                font-size: 26px;
+            .stat:nth-child(2) {
+                border-right: none;
             }
 
+            .section {
+                padding: 75px 0;
+            }
 
             .subject-grid,
-
-            .feature-grid,
-
-            .steps {
-
+            .feature-grid {
                 grid-template-columns: 1fr;
-
             }
 
-
-            .how-section,
-
-            .features {
-
-                padding: 65px 5%;
+            .cta {
+                padding: 70px 0;
             }
 
+            .cta-box {
+                padding: 40px 25px;
+            }
+
+            .cta-box h2 {
+                font-size: 29px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
         }
 
-
-        /* ==============================
-           SMALL MOBILE
-        ============================== */
-
-        @media (max-width: 420px) {
+        @media (max-width: 430px) {
 
             .hero h1 {
-
-                font-size: 30px;
+                font-size: 35px;
             }
 
-
-            .qr-panel {
-
-                padding: 24px;
+            .actions {
+                flex-direction: column;
             }
 
-
-            .qr-visual {
-
-                width: 180px;
-
-                height: 180px;
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
             }
 
+            .hero-visual {
+                transform: scale(.88);
+                margin-left: -20px;
+                margin-right: -20px;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+<!-- ================= NAVBAR ================= -->
 
-    <!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container nav">
 
-    <nav class="navbar">
-
-        <a href="/" class="logo">
-            🧪 Lab Practical Portal
+        <a href="/" class="brand">
+            <span class="brand-icon">⚗</span>
+            <span class="brand-name">Lab Practical Portal</span>
         </a>
 
-
         <div class="nav-links">
-
-            <a href="#subjects">
-                Subjects
-            </a>
-
-            <a href="#how-it-works">
-                How It Works
-            </a>
-
-            <a href="#features">
-                Features
-            </a>
-
-            <a href="/admin/" class="admin-btn">
-                Admin Login
-            </a>
-
+            <a href="#subjects">Subjects</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#features">Features</a>
+            <a href="/admin/" class="admin">Admin Login</a>
         </div>
 
-    </nav>
+    </div>
+</nav>
 
 
-    <!-- HERO -->
+<!-- ================= HERO ================= -->
 
-    <section class="hero">
+<section class="hero">
 
+    <div class="container hero-grid">
 
-        <div class="hero-content">
+        <div>
 
-            <span class="badge">
-                📱 QR-Based Digital Laboratory
-            </span>
-
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Digital Laboratory Platform
+            </div>
 
             <h1>
-                Your Laboratory
-                <span>Practicals.</span>
-                One Place.
+                Smarter Access to
+                <span>Laboratory Practicals.</span>
             </h1>
 
-
-            <p class="hero-description">
-
-                Access complete laboratory practicals
-                instantly. Scan a subject QR code to view
-                aims, theory, procedures, programs, outputs
-                and viva questions — all from your mobile.
-
+            <p class="hero-text">
+                A centralized digital platform for accessing laboratory
+                practicals, programs, theory, procedures, outputs and
+                viva questions — whenever you need them.
             </p>
 
+            <div class="actions">
 
-            <div class="hero-actions">
-
-                <a
-                    href="#subjects"
-                    class="primary-btn"
-                >
+                <a href="#subjects" class="btn-primary">
                     Explore Subjects →
                 </a>
 
-
-                <a
-                    href="#how-it-works"
-                    class="secondary-btn"
-                >
-                    How It Works
+                <a href="#how-it-works" class="btn-secondary">
+                    Learn How It Works
                 </a>
 
             </div>
@@ -1244,110 +971,119 @@
         </div>
 
 
-        <!-- QR PREVIEW -->
+        <!-- HERO VISUAL -->
 
-        <div class="qr-panel">
+        <div class="hero-visual">
 
-            <div class="qr-top">
-                📷 SCAN TO ACCESS
+            <div class="floating one">
+                ⚡ <strong>Quick Access</strong>
             </div>
 
-
-            <div class="qr-visual">
-
-                <div class="qr-pattern"></div>
-
-                <div class="qr-corner corner-one"></div>
-
-                <div class="qr-corner corner-two"></div>
-
-                <div class="qr-corner corner-three"></div>
-
+            <div class="floating two">
+                ✓ <strong>Available 24/7</strong>
             </div>
 
+            <div class="dashboard-card">
 
-            <h3>
-                Scan & Learn
-            </h3>
+                <div class="dashboard-head">
 
+                    <span class="dashboard-title">
+                        Laboratory Access
+                    </span>
 
-            <p>
-                One QR code gives access to all practicals
-                of a subject.
-            </p>
+                    <span class="online">
+                        <span class="online-dot"></span>
+                        ACTIVE
+                    </span>
 
-        </div>
+                </div>
 
-    </section>
+                <div class="qr-area">
+                    <div class="qr"></div>
+                </div>
 
+                <div class="dashboard-footer">
 
-    <!-- STATS -->
+                    <div class="dashboard-stat">
+                        <strong>{{ subjects|length }}</strong>
+                        <span>Subjects</span>
+                    </div>
 
-    <section class="stats">
+                    <div class="dashboard-stat">
+                        <strong>QR</strong>
+                        <span>Access</span>
+                    </div>
 
-        <div class="stat-card">
+                    <div class="dashboard-stat">
+                        <strong>24/7</strong>
+                        <span>Available</span>
+                    </div>
 
-            <div class="stat-number">
-                {{ subjects|length }}
-            </div>
+                </div>
 
-            <div class="stat-label">
-                Available Subjects
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-number">
-                QR
-            </div>
-
-            <div class="stat-label">
-                Quick QR Access
             </div>
 
         </div>
 
+    </div>
 
-        <div class="stat-card">
+</section>
 
-            <div class="stat-number">
-                24/7
+
+<!-- ================= STATS ================= -->
+
+<div class="stats">
+
+    <div class="container">
+
+        <div class="stats-box">
+
+            <div class="stat">
+                <strong>{{ subjects|length }}</strong>
+                <span>Available Subjects</span>
             </div>
 
-            <div class="stat-label">
-                Digital Access
+            <div class="stat">
+                <strong>QR</strong>
+                <span>Quick Access</span>
+            </div>
+
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>Digital Availability</span>
+            </div>
+
+            <div class="stat">
+                <strong>100%</strong>
+                <span>Organized Resources</span>
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</div>
 
 
-    <!-- SUBJECTS -->
+<!-- ================= SUBJECTS ================= -->
 
-    <section
-        class="subjects"
-        id="subjects"
-    >
+<section class="section subjects" id="subjects">
 
-        <div class="section-header">
+    <div class="container">
+
+        <div class="section-head">
 
             <div class="section-label">
-                Laboratory
+                Academic Resources
             </div>
 
-
-            <h2>
-                Available Subjects
+            <h2 class="section-title">
+                Laboratory Subjects
             </h2>
 
-
-            <p>
-                Select a subject to explore its complete
-                laboratory practical collection.
+            <p class="section-desc">
+                Browse your academic subjects and access the complete
+                collection of practical resources from one place.
             </p>
 
         </div>
@@ -1355,27 +1091,25 @@
 
         <div class="subject-grid">
 
-
             {% for subject in subjects %}
-
 
             <article class="subject-card">
 
+                <div class="subject-top">
 
-                <div class="subject-icon">
-                    📚
+                    <span class="subject-number">
+                        SUBJECT {{ forloop.counter|stringformat:"02d" }}
+                    </span>
+
+                    <span class="code">
+                        {{ subject.code }}
+                    </span>
+
                 </div>
-
 
                 <h3>
                     {{ subject.name }}
                 </h3>
-
-
-                <span class="subject-code">
-                    {{ subject.code }}
-                </span>
-
 
                 <p>
 
@@ -1385,170 +1119,149 @@
 
                     {% else %}
 
-                        Explore laboratory practicals,
-                        programs, outputs and viva questions.
+                        Explore laboratory practicals, programs,
+                        outputs and viva questions.
 
                     {% endif %}
 
                 </p>
 
+                <a href="{% url 'subject_detail' subject.id %}"
+                   class="subject-link">
 
-                <a
-                    href="{% url 'subject_detail' subject.id %}"
-                    class="subject-link"
-                >
-
-                    View Practicals →
+                    View Practicals
+                    <span class="arrow">→</span>
 
                 </a>
 
-
             </article>
-
 
             {% empty %}
 
-
-            <div class="empty-subject">
-
-                <h3>
-                    📚 No Subjects Available
-                </h3>
-
-
-                <p>
-                    Subjects will appear here once they
-                    are added by the administrator.
-                </p>
-
+            <div class="empty">
+                No subjects are available yet.
             </div>
-
 
             {% endfor %}
 
-
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- HOW IT WORKS -->
+<!-- ================= WORKFLOW ================= -->
 
-    <section
-        class="how-section"
-        id="how-it-works"
-    >
+<section class="section" id="how-it-works">
 
-        <div class="section-header">
+    <div class="container">
+
+        <div class="section-head">
 
             <div class="section-label">
-                Simple Process
+                Simple Workflow
             </div>
 
-
-            <h2>
-                How It Works
+            <h2 class="section-title">
+                How the Portal Works
             </h2>
 
-
-            <p>
-                Access your laboratory practical in
-                just three simple steps.
+            <p class="section-desc">
+                Access practical resources in three simple steps during
+                your laboratory session.
             </p>
 
         </div>
 
 
-        <div class="steps">
+        <div class="workflow">
 
+            <div class="workflow-card">
 
-            <div class="step">
+                <span class="step">01</span>
 
-                <div class="step-number">
-                    01
+                <div class="workflow-icon">
+                    ◉
                 </div>
-
 
                 <h3>
                     Scan QR Code
                 </h3>
 
-
                 <p>
-                    Scan the QR code provided for your
-                    laboratory subject.
+                    Scan the subject QR code placed inside the laboratory
+                    using your smartphone.
                 </p>
 
             </div>
 
 
-            <div class="step">
+            <div class="workflow-card">
 
-                <div class="step-number">
-                    02
+                <span class="step">02</span>
+
+                <div class="workflow-icon">
+                    ▣
                 </div>
 
-
                 <h3>
-                    Select Practical
+                    Choose Practical
                 </h3>
 
-
                 <p>
-                    Choose the practical you want to
-                    study from the subject list.
+                    Select the required practical from the subject's
+                    organized practical list.
                 </p>
 
             </div>
 
 
-            <div class="step">
+            <div class="workflow-card">
 
-                <div class="step-number">
-                    03
+                <span class="step">03</span>
+
+                <div class="workflow-icon">
+                    ✓
                 </div>
 
-
                 <h3>
-                    Study & Perform
+                    Learn & Perform
                 </h3>
 
-
                 <p>
-                    View the aim, theory, procedure,
-                    code, output and viva questions.
+                    Study the theory, follow the procedure, execute the
+                    program and prepare for viva.
                 </p>
 
             </div>
-
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- FEATURES -->
+<!-- ================= FEATURES ================= -->
 
-    <section
-        class="features"
-        id="features"
-    >
+<section class="section features" id="features">
 
-        <div class="section-header">
+    <div class="container">
+
+        <div class="section-head">
 
             <div class="section-label">
-                Platform
+                Platform Features
             </div>
 
-
-            <h2>
-                Everything You Need
+            <h2 class="section-title">
+                Designed for Better Laboratory Learning
             </h2>
 
-
-            <p>
-                A modern digital solution for laboratory
-                practical learning.
+            <p class="section-desc">
+                Everything required for practical preparation and
+                laboratory sessions, organized in a single platform.
             </p>
 
         </div>
@@ -1556,88 +1269,106 @@
 
         <div class="feature-grid">
 
+            <div class="feature">
 
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    📱
-                </div>
-
+                <div class="feature-icon">📱</div>
 
                 <h3>
-                    QR Access
+                    QR-Based Access
                 </h3>
 
-
                 <p>
-                    Quickly access subject practicals
-                    using a single QR code.
+                    One subject QR code provides quick access to its
+                    complete collection of practicals.
                 </p>
 
             </div>
 
 
-            <div class="feature-card">
+            <div class="feature">
 
-                <div class="feature-icon">
-                    📖
-                </div>
-
+                <div class="feature-icon">💻</div>
 
                 <h3>
-                    Complete Material
+                    Complete Practical Resources
                 </h3>
 
-
                 <p>
-                    Aim, theory, procedure, code,
-                    output and viva in one place.
+                    Access aim, requirements, theory, procedure, code,
+                    output and other practical information.
                 </p>
 
             </div>
 
 
-            <div class="feature-card">
+            <div class="feature">
 
-                <div class="feature-icon">
-                    ⚡
-                </div>
-
+                <div class="feature-icon">🎓</div>
 
                 <h3>
-                    Fast & Simple
+                    Viva Preparation
                 </h3>
 
-
                 <p>
-                    Find your required practical within
-                    seconds without searching notebooks.
+                    Prepare for laboratory examinations using
+                    practical-specific viva questions.
                 </p>
 
             </div>
-
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- FOOTER -->
+<!-- ================= CTA ================= -->
 
-    <footer>
+<section class="cta">
 
-        <p>
+    <div class="container">
 
-            © 2026
-            <strong>Lab Practical Portal</strong>
-            · Built with Django
+        <div class="cta-box">
 
-        </p>
+            <h2>
+                Your practical resources.
+                One organized platform.
+            </h2>
 
-    </footer>
+            <p>
+                Quickly find the practical you need and focus more on
+                learning, performing and preparing for your laboratory work.
+            </p>
 
+            <a href="#subjects" class="cta-btn">
+                Explore Subjects →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer">
+
+        <div class="footer-brand">
+            ⚗ Lab Practical Portal
+        </div>
+
+        <div class="footer-text">
+            Digital Laboratory Resources • Student & Faculty Portal
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
-
 </html>
-```
