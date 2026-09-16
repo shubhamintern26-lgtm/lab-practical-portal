@@ -1,3 +1,4 @@
+import os
 import requests
 
 
@@ -113,6 +114,7 @@ Do not say things like:
 "According to the practical context..."
 unless it is genuinely useful.
 
+
 LANGUAGE BEHAVIOR
 =================
 
@@ -154,6 +156,7 @@ Examples:
 "Python ko Hinglish me explain karo"
 → Answer in Roman Hinglish.
 
+
 QUALITY
 =======
 
@@ -192,9 +195,15 @@ ANSWER THE STUDENT'S QUESTION, NOT THE ENTIRE PRACTICAL.
 Now respond naturally to the student's question.
 """
 
+    # Use OLLAMA_URL from environment when deployed.
+    # If it is not set, use local Ollama for development.
+    ollama_url = os.environ.get(
+        "OLLAMA_URL",
+        "http://localhost:11434"
+    ).rstrip("/")
 
     response = requests.post(
-        "http://localhost:11434/api/generate",
+        f"{ollama_url}/api/generate",
         json={
             "model": "llama3.2:3b",
             "prompt": prompt,
